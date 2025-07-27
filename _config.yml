@@ -1,0 +1,23 @@
+# Site settings
+title: Your Blog Title
+description: A clean, minimal blog
+author: Your Name
+email: your-email@example.com
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Permalink structure
+permalink: /:year/:month/:day/:title/
+
+# Social links (optional)
+twitter_username: 
+github_username: 
+
+# Minima theme settings
+minima:
+  skin: classic
+  date_format: "%B %-d, %Y"
