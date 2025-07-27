@@ -111,22 +111,72 @@ blockquote {
 
 // Site header improvements
 .site-header {
-  border-top: 3px solid $brand-color;
+  border-top: 4px solid $brand-color;
   border-bottom: 1px solid $grey-color-light;
-  min-height: 56px;
+  min-height: 80px;
   position: relative;
+  background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 54px;
-  letter-spacing: -0.5px;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
   margin-bottom: 0;
+  text-align: center;
+  display: block;
+  float: none;
+  
+  // Spring-inspired gradient effect
+  background: linear-gradient(45deg, #0984e3, #00b894);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  // Add subtle text shadow for depth
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.1));
+  
+  &:hover {
+    text-decoration: none;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.15));
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+  }
   
   &,
   &:visited {
-    color: $text-color;
+    color: $text-color; // Fallback for browsers that don't support gradient text
+  }
+}
+
+// Alternative font options for spring feeling
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+
+.site-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+}
+
+// Center navigation if present
+.site-nav {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+// Mobile adjustments
+@media screen and (max-width: 600px) {
+  .site-header {
+    min-height: 60px;
+  }
+  
+  .site-title {
+    font-size: 28px;
   }
 }
 
