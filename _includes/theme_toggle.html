@@ -1,0 +1,32 @@
+
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <span id="theme-icon">☀</span>
+</button>
+
+<script>
+  // Check for saved theme preference or default to light mode
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  
+  // Apply saved theme on load
+  if (currentTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    document.getElementById('theme-icon').textContent = '☽';
+  }
+  
+  function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('theme-icon');
+    
+    if (body.classList.contains('dark-mode')) {
+      // Switch to light mode
+      body.classList.remove('dark-mode');
+      themeIcon.textContent = '☀';
+      localStorage.setItem('theme', 'light');
+    } else {
+      // Switch to dark mode
+      body.classList.add('dark-mode');
+      themeIcon.textContent = '☽';
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+</script>
