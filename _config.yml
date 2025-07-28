@@ -1,8 +1,8 @@
 # Site settings
-title: Your Blog Title
-description: A clean, minimal blog
-author: Your Name
-email: your-email@example.com
+title: Wishardry's Red Room
+description:
+author: Wishardry
+email: wishardry@gmail.com
 
 # Build settings
 theme: minima
