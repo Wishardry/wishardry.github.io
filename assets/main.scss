@@ -11,10 +11,11 @@
 $content-width: 740px;
 $spacing-unit: 32px;
 
-// Warm color palette
+// Light mode colors (warm)
 $background-color: #fffae8;
 $header-background: #ffedba;
 $text-color: #2d3436;
+$title-color: #e74c3c;
 $brand-color: #ff9a56;
 $separator-color: #ff8c42;
 $link-color: #d9614c;
@@ -24,6 +25,104 @@ $grey-color: #636e72;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark: darken($grey-color, 20%);
 $margin-line-color: #ffe8cc;
+$card-background: #fff5e1;
+
+// Dark mode colors (cool)
+$dark-background: #0a0f1c;
+$dark-header: #162447;
+$dark-text: #e8e8e8;
+$dark-title: #00a8ff;
+$dark-separator: #0066cc;
+$dark-link: #4da6ff;
+$dark-link-hover: #80bfff;
+$dark-card: #1a2744;
+$dark-margin-line: #1e3a5f;
+
+// Dark mode styles
+body.dark-mode {
+  background-color: $dark-background;
+  color: $dark-text;
+  
+  .site-header {
+    background: linear-gradient(to bottom, $dark-header 0%, $dark-header 95%, $dark-background 100%);
+    border-bottom-color: $dark-separator;
+  }
+  
+  .site-title {
+    color: $dark-title;
+    
+    &:visited {
+      color: $dark-title;
+    }
+  }
+  
+  .site-nav .page-link,
+  .theme-toggle {
+    background-color: rgba(0, 168, 255, 0.2);
+    color: $dark-text;
+    
+    &:hover {
+      background-color: rgba(0, 168, 255, 0.4);
+    }
+  }
+  
+  a {
+    color: $dark-link;
+    
+    &:hover {
+      color: $dark-link-hover;
+    }
+    
+    &:visited {
+      color: darken($dark-link, 10%);
+    }
+  }
+  
+  .post-card {
+    background-color: $dark-card;
+    border-color: $dark-margin-line;
+    
+    &:hover {
+      border-color: $dark-separator;
+      box-shadow: 0 4px 12px rgba(0, 168, 255, 0.2);
+    }
+  }
+  
+  .post-meta {
+    color: lighten($dark-text, 20%);
+  }
+  
+  .page-content::before,
+  .page-content::after {
+    background-color: $dark-margin-line;
+  }
+  
+  blockquote {
+    background-color: rgba(26, 39, 68, 0.5);
+    border-left-color: $dark-separator;
+  }
+  
+  pre, code {
+    background-color: rgba(26, 39, 68, 0.6);
+    border-color: $dark-margin-line;
+  }
+  
+  .site-footer {
+    background-color: rgba(22, 36, 71, 0.5);
+    border-top-color: $dark-margin-line;
+  }
+  
+  table {
+    th {
+      background-color: rgba(26, 39, 68, 0.5);
+      border-color: $dark-margin-line;
+    }
+    
+    td {
+      border-color: $dark-margin-line;
+    }
+  }
+}
 
 // Typography
 body {
@@ -35,6 +134,7 @@ body {
   background-color: $background-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // Headers with Source Serif
@@ -47,20 +147,26 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Site header with warm background
+// Smaller site header
 .site-header {
   background: linear-gradient(to bottom, $header-background 0%, $header-background 95%, $background-color 100%);
   border-top: none;
-  border-bottom: 6px solid $separator-color;
-  min-height: 90px;
+  border-bottom: 5px solid $separator-color;
+  min-height: 60px;
   position: relative;
-  padding: 20px 0;
+  padding: 15px 0;
+  transition: all 0.3s ease;
 }
 
-// Pixelated title
+// Wrapper adjustment for header elements
+.wrapper {
+  position: relative;
+}
+
+// Red pixelated title
 .site-title {
   font-family: 'Pixelify Sans', monospace;
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 700;
   text-align: center;
   display: block;
@@ -69,15 +175,36 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   float: none;
   text-transform: uppercase;
+  color: $title-color;
+  transition: color 0.3s ease;
   
   &, &:visited {
-    color: $text-color;
+    color: $title-color;
     text-decoration: none;
   }
   
   &:hover {
     text-decoration: none;
     opacity: 0.9;
+  }
+}
+
+// Theme toggle button
+.theme-toggle {
+  position: absolute;
+  top: 50%;
+  left: $spacing-unit;
+  transform: translateY(-50%);
+  background-color: rgba(255, 156, 86, 0.2);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(255, 156, 86, 0.4);
   }
 }
 
@@ -95,7 +222,7 @@ h1, h2, h3, h4, h5, h6 {
     color: $text-color;
     background-color: rgba(255, 156, 86, 0.2);
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 8px;
     margin-left: 10px;
     transition: all 0.3s ease;
     
@@ -119,6 +246,7 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     width: 1px;
     background-color: $margin-line-color;
+    transition: background-color 0.3s ease;
   }
   
   &::before {
@@ -127,6 +255,94 @@ h1, h2, h3, h4, h5, h6 {
   
   &::after {
     right: calc(50% - #{$content-width / 2} - 20px);
+  }
+}
+
+// Homepage content
+.home {
+  .page-heading {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .welcome-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $margin-line-color;
+  }
+}
+
+// Post cards - wide format
+.post-list {
+  list-style: none;
+  margin-left: 0;
+  max-width: 100%;
+  
+  > li {
+    margin-bottom: 20px;
+    padding: 0;
+    border: none;
+  }
+}
+
+.post-card {
+  display: block;
+  background-color: $card-background;
+  border: 2px solid $margin-line-color;
+  border-radius: 12px;
+  padding: 24px 28px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    border-color: $brand-color;
+    box-shadow: 0 4px 12px rgba(255, 140, 66, 0.2);
+    transform: translateY(-2px);
+    
+    .post-link {
+      color: $link-hover;
+    }
+  }
+  
+  .post-link {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-color;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .post-meta {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-style: italic;
+    font-size: 14px;
+    color: $grey-color;
+    margin-bottom: 12px;
+  }
+  
+  .post-excerpt {
+    font-size: 16px;
+    line-height: 1.5;
+    color: $text-color;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 4.5em;
   }
 }
 
@@ -148,43 +364,6 @@ a {
   &:visited {
     color: darken($link-color, 10%);
   }
-}
-
-// Post list styling
-.post-list {
-  list-style: none;
-  margin-left: 0;
-  
-  > li {
-    margin-bottom: $spacing-unit * 1.5;
-    padding-bottom: $spacing-unit;
-    border-bottom: 2px solid $margin-line-color;
-    
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-}
-
-.post-link {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: $text-color;
-  
-  &:hover {
-    color: $link-hover;
-    text-decoration: none;
-  }
-}
-
-// Post meta styling
-.post-meta {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-style: italic;
-  font-size: 15px;
-  color: $grey-color;
-  margin-top: 5px;
 }
 
 // Post content
@@ -216,6 +395,7 @@ blockquote {
   background-color: rgba(255, 237, 186, 0.3);
   padding: 15px;
   padding-left: 20px;
+  transition: all 0.3s ease;
   
   > :last-child {
     margin-bottom: 0;
@@ -229,6 +409,7 @@ code {
   border-radius: 4px;
   background-color: rgba(255, 250, 232, 0.6);
   border: 1px solid $margin-line-color;
+  transition: all 0.3s ease;
 }
 
 code {
@@ -254,6 +435,7 @@ pre {
   padding: $spacing-unit 0;
   background-color: rgba(255, 237, 186, 0.5);
   font-family: 'Source Serif 4', Georgia, serif;
+  transition: all 0.3s ease;
 }
 
 // Tables
@@ -290,22 +472,49 @@ img {
 // Mobile responsiveness
 @media screen and (max-width: 600px) {
   .site-header {
-    min-height: 70px;
+    min-height: 50px;
+    padding: 10px 0;
   }
   
   .site-title {
-    font-size: 28px;
+    font-size: 24px;
+  }
+  
+  .theme-toggle {
+    left: 10px;
+    padding: 6px 10px;
+    font-size: 16px;
   }
   
   .site-nav {
-    position: static;
-    transform: none;
-    margin-top: 10px;
-    text-align: center;
+    right: 10px;
+    
+    .page-link {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
   }
   
   .page-content::before,
   .page-content::after {
     display: none;
   }
+  
+  .post-card {
+    padding: 20px;
+    
+    .post-link {
+      font-size: 20px;
+    }
+    
+    .post-excerpt {
+      -webkit-line-clamp: 2;
+      max-height: 3em;
+    }
+  }
+}
+
+// Limit posts on homepage
+.home .post-list > li:nth-child(n+6) {
+  display: none;
 }
