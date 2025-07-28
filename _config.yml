@@ -10,14 +10,27 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-# Permalink structure
-permalink: /:year/:month/:day/:title/
+# Permalink structure - creates clean URLs without dates
+permalink: /:title/
 
-# Social links (optional)
-twitter_username: 
-github_username: 
+# Social media (optional - delete lines you don't use)
+
 
 # Minima theme settings
 minima:
-  skin: classic
+  skin: classic # Options: classic, dark, solarized-dark, solarized
   date_format: "%B %-d, %Y"
+
+# Site-wide settings
+show_excerpts: true # Show post excerpts on homepage
+google_analytics: # Add your Google Analytics ID if you want
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
