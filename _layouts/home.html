@@ -1,17 +1,32 @@
-<header class="site-header" role="banner">
+---
+layout: default
+---
 
-  <div class="wrapper">
-    {%- include theme-toggle.html -%}
+<div class="home">
+  {%- if page.title -%}
+    <h1 class="page-heading">{{ page.title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+  {%- if site.posts.size > 0 -%}
+    <h2>Recent Posts</h2>
     
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
-
-    <nav class="site-nav">
-      {%- for path in site.pages -%}
-        {%- if path.title and path.permalink -%}
-          <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
-        {%- endif -%}
+    <ul class="post-list">
+      {%- for post in site.posts limit:5 -%}
+      <li>
+        <a href="{{ post.url | relative_url }}" class="post-card">
+          <div class="post-header">
+            <h3 class="post-link">{{ post.title | escape }}</h3>
+            <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+          </div>
+          <div class="post-excerpt">
+            {{ post.excerpt | strip_html | truncatewords: 50 }}
+          </div>
+        </a>
+      </li>
       {%- endfor -%}
-    </nav>
-  </div>
+    </ul>
+  {%- endif -%}
 
-</header>
+</div>
