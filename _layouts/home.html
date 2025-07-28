@@ -1,0 +1,17 @@
+<header class="site-header" role="banner">
+
+  <div class="wrapper">
+    {%- include theme-toggle.html -%}
+    
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+
+    <nav class="site-nav">
+      {%- for path in site.pages -%}
+        {%- if path.title and path.permalink -%}
+          <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </div>
+
+</header>
