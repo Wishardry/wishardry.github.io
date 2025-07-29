@@ -1,25 +1,4 @@
-// Headers with divider lines
-h1 {
-  position: relative;
-  padding-bottom: 12px;
-  margin-bottom: 24px;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: $margin-line-color;
-  }
-}
-
-body.dark-mode {
-  h1::after {
-    background-color: $dark-margin-line;
-  }
-}---
+---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
@@ -62,6 +41,23 @@ $dark-margin-line: #3d1515;
 $dark-accent-line: #ff4444;
 $dark-heading-color: #ffcccc;  // Light red for headers
 $dark-meta-color: #ffaaaa;  // For post meta
+
+// Headers with divider lines
+h1 {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $margin-line-color;
+  }
+}
 
 // Dark mode styles
 body.dark-mode {
@@ -207,23 +203,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 2rem;
   margin-bottom: 1rem;
   color: $text-color;
-}
-
-// H1 with divider line
-h1 {
-  position: relative;
-  padding-bottom: 12px;
-  margin-bottom: 24px;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: $margin-line-color;
-  }
 }
 
 // Site header with no gradient gap
@@ -552,6 +531,38 @@ body.dark-mode {
   }
 }
 
+// Load more posts button
+.load-more-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.load-more-btn {
+  background-color: $brand-color;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: darken($brand-color, 10%);
+    transform: translateY(-2px);
+  }
+}
+
+body.dark-mode .load-more-btn {
+  background-color: $dark-accent-line;
+  
+  &:hover {
+    background-color: lighten($dark-accent-line, 10%);
+  }
+}
+
 // Link styling with warm colors
 a {
   color: $link-color;
@@ -728,9 +739,4 @@ img {
       max-height: 3em;
     }
   }
-}
-
-// Limit posts on homepage
-.home .post-list > li:nth-child(n+6) {
-  display: none;
 }
