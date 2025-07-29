@@ -3,7 +3,10 @@
   <div class="wrapper">
     {%- include theme-toggle.html -%}
     
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+      <span class="site-title-desktop">{{ site.title | escape }}</span>
+      <span class="site-title-mobile">WISHARDRY'S<br>RED ROOM</span>
+    </a>
 
     <nav class="site-nav">
       {%- for path in site.pages -%}
