@@ -1,4 +1,25 @@
----
+// Headers with divider lines
+h1 {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: $margin-line-color;
+  }
+}
+
+body.dark-mode {
+  h1::after {
+    background-color: $dark-margin-line;
+  }
+}---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
 
@@ -52,7 +73,7 @@ body.dark-mode {
   }
   
   .site-header {
-    background: linear-gradient(to bottom, $dark-header 0%, $dark-header 95%, $dark-background 100%);
+    background-color: $dark-header;
     border-bottom-color: $dark-separator;
   }
   
@@ -184,9 +205,9 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Site header with better layout control
+// Site header with no gradient gap
 .site-header {
-  background: linear-gradient(to bottom, $header-background 0%, $header-background 95%, $background-color 100%);
+  background-color: $header-background;
   border-top: none;
   border-bottom: 5px solid $separator-color;
   min-height: 55px;
@@ -209,7 +230,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-// Red pixelated title - responsive with proper mobile handling
+// Red pixelated title - responsive with proper breakpoints
 .site-title {
   font-family: 'Pixelify Sans', monospace;
   font-size: 44px;
@@ -218,12 +239,13 @@ h1, h2, h3, h4, h5, h6 {
   display: inline-block;
   line-height: 1.2;
   letter-spacing: 1px;
-  margin: 0 120px; // Space for buttons
+  margin: 0 130px; // More space for buttons
   text-transform: uppercase;
   color: $title-color;
   transition: color 0.3s ease;
   position: relative;
   z-index: 1;
+  white-space: nowrap;
   
   &, &:visited {
     color: $title-color;
@@ -239,16 +261,35 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
   
-  // Tablet size
+  // Large tablets
+  @media screen and (max-width: 900px) {
+    font-size: 38px;
+    margin: 0 110px;
+  }
+  
+  // Tablets
   @media screen and (max-width: 768px) {
-    font-size: 36px;
+    font-size: 32px;
     margin: 0 100px;
+  }
+  
+  // Small tablets
+  @media screen and (max-width: 640px) {
+    font-size: 28px;
+    margin: 0 90px;
+  }
+  
+  // Large phones
+  @media screen and (max-width: 540px) {
+    font-size: 26px;
+    margin: 0 85px;
   }
   
   // Mobile - show two-line version
   @media screen and (max-width: 480px) {
     font-size: 24px;
     margin: 0;
+    white-space: normal;
     
     .site-title-desktop {
       display: none;
