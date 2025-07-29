@@ -31,31 +31,35 @@ $accent-line-color: #2d3436;
 // Dark mode colors (red theme)
 $dark-background: #0a0a0a;
 $dark-header: #2d0f0f;
-$dark-text: #ffffff;
+$dark-text: #fff5f5;  // Slight red tint
 $dark-title: #ff4444;
-$dark-separator: #8b0000;
-$dark-link: #ff7575;
-$dark-link-hover: #ffaaaa;
+$dark-separator: #cc3333;  // Brighter red for visibility
+$dark-link: #ff9999;
+$dark-link-hover: #ffbbbb;
 $dark-card: #1f0a0a;
 $dark-margin-line: #3d1515;
 $dark-accent-line: #ff4444;
+$dark-heading-color: #ffcccc;  // Light red for headers
+$dark-meta-color: #ffaaaa;  // For post meta
 
 // Dark mode styles
 body.dark-mode {
   background-color: $dark-background;
   color: $dark-text;
   
+  h1, h2, h3, h4, h5, h6 {
+    color: $dark-heading-color;
+  }
+  
   .site-header {
     background: linear-gradient(to bottom, $dark-header 0%, $dark-header 95%, $dark-background 100%);
     border-bottom-color: $dark-separator;
-    
-    &::before {
-      background-color: $dark-accent-line;
-    }
   }
   
   .site-title {
     color: $dark-title;
+    z-index: 1;
+    position: relative;
     
     &:visited {
       color: $dark-title;
@@ -66,6 +70,7 @@ body.dark-mode {
   .theme-switch {
     background-color: rgba(255, 68, 68, 0.2);
     color: $dark-text;
+    z-index: 10;
     
     &:hover {
       background-color: rgba(255, 68, 68, 0.4);
@@ -96,6 +101,14 @@ body.dark-mode {
     background-color: $dark-card;
     border-color: $dark-margin-line;
     
+    .post-link {
+      color: $dark-heading-color;
+    }
+    
+    .post-excerpt {
+      color: $dark-text;
+    }
+    
     &:hover {
       border-color: $dark-separator;
       box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
@@ -103,7 +116,7 @@ body.dark-mode {
   }
   
   .post-meta {
-    color: lighten($dark-link, 20%);
+    color: $dark-meta-color;
   }
   
   .page-content::before,
@@ -114,16 +127,18 @@ body.dark-mode {
   blockquote {
     background-color: rgba(31, 10, 10, 0.5);
     border-left-color: $dark-separator;
+    color: $dark-text;
   }
   
   pre, code {
     background-color: rgba(31, 10, 10, 0.6);
     border-color: $dark-margin-line;
+    color: $dark-text;
   }
   
   .site-footer {
     background-color: rgba(45, 15, 15, 0.5);
-    border-top-color: $dark-margin-line;
+    border-top-color: #5d2222;  // Brighter red for visibility
   }
   
   table {
@@ -165,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Site header with accent line
+// Site header with no accent line
 .site-header {
   background: linear-gradient(to bottom, $header-background 0%, $header-background 95%, $background-color 100%);
   border-top: none;
@@ -174,18 +189,6 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding: 12px 0;
   transition: all 0.3s ease;
-  
-  // Thin accent line above separator
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 5px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: $accent-line-color;
-    transition: background-color 0.3s ease;
-  }
 }
 
 // Wrapper adjustment for header elements
@@ -231,6 +234,7 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   width: 50px;
   height: 26px;
+  z-index: 10;
   
   &:focus {
     outline: none;
@@ -280,7 +284,7 @@ body.dark-mode .theme-switch-slider {
   }
 }
 
-// Navigation styling
+// Navigation styling with better contrast
 .site-nav {
   position: absolute;
   top: 50%;
@@ -288,18 +292,19 @@ body.dark-mode .theme-switch-slider {
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
+  z-index: 10;
   
   .page-link {
     font-family: 'Source Serif 4', Georgia, serif;
     color: $text-color;
-    background-color: rgba(255, 156, 86, 0.2);
+    background-color: rgba(231, 76, 60, 0.25);  // Deeper red background
     padding: 8px 16px;
     border-radius: 8px;
     margin-left: 10px;
     transition: all 0.3s ease;
     
     &:hover {
-      background-color: rgba(255, 156, 86, 0.4);
+      background-color: rgba(231, 76, 60, 0.4);
       text-decoration: none;
     }
   }
@@ -511,7 +516,7 @@ pre {
 
 // Footer with warm background - more compact
 .site-footer {
-  border-top: 2px solid $margin-line-color;
+  border-top: 2px solid #e19b85;  // More visible red-tinted line
   padding: 20px 0;
   background-color: rgba(255, 212, 196, 0.5); // Shifted to match coral-peach header
   font-family: 'Source Serif 4', Georgia, serif;
