@@ -184,7 +184,7 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Site header with no accent line
+// Site header with better layout control
 .site-header {
   background: linear-gradient(to bottom, $header-background 0%, $header-background 95%, $background-color 100%);
   border-top: none;
@@ -193,6 +193,15 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding: 12px 0;
   transition: all 0.3s ease;
+  
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }
 
 // Wrapper adjustment for header elements
@@ -200,20 +209,22 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-// Red pixelated title - bigger with hover effect
+// Red pixelated title - responsive
 .site-title {
   font-family: 'Pixelify Sans', monospace;
   font-size: 44px;
   font-weight: 700;
   text-align: center;
-  display: block;
+  display: inline-block;
   line-height: 1;
   letter-spacing: 1px;
-  margin: 0 auto;
-  float: none;
+  margin: 0 100px; // Space for buttons
   text-transform: uppercase;
   color: $title-color;
   transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
   
   &, &:visited {
     color: $title-color;
@@ -222,40 +233,39 @@ h1, h2, h3, h4, h5, h6 {
   
   &:hover {
     text-decoration: none;
-    color: lighten($title-color, 15%);  // Lighter red on hover
+    color: lighten($title-color, 15%);
+  }
+  
+  // Responsive font sizes
+  @media screen and (max-width: 800px) {
+    font-size: 32px;
+    margin: 0 80px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    font-size: 24px;
+    margin: 0 60px;
   }
 }
 
-// Theme toggle segmented control
+// Theme toggle single button
 .theme-toggle {
   position: absolute;
   top: 50%;
   left: $spacing-unit;
   transform: translateY(-50%);
   display: flex;
+  align-items: center;
   background-color: rgba(255, 156, 86, 0.2);
-  border-radius: 8px;
-  padding: 2px;
-  z-index: 10;
-}
-
-.theme-toggle-btn {
-  background: transparent;
   border: none;
+  border-radius: 8px;
   padding: 6px 12px;
   cursor: pointer;
-  font-size: 16px;
-  color: $text-color;
-  border-radius: 6px;
+  z-index: 10;
   transition: all 0.3s ease;
   
   &:hover {
-    background-color: rgba(255, 156, 86, 0.2);
-  }
-  
-  &.active {
-    background-color: rgba(231, 76, 60, 0.4);
-    color: white;
+    background-color: rgba(255, 156, 86, 0.3);
   }
   
   &:focus {
@@ -263,20 +273,37 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.theme-icon {
+  font-size: 16px;
+  color: $text-color;
+  
+  &.light-icon {
+    display: inline;
+  }
+  
+  &.dark-icon {
+    display: none;
+  }
+}
+
 body.dark-mode {
   .theme-toggle {
     background-color: rgba(255, 68, 68, 0.2);
-  }
-  
-  .theme-toggle-btn {
-    color: $dark-text;
     
     &:hover {
-      background-color: rgba(255, 68, 68, 0.2);
+      background-color: rgba(255, 68, 68, 0.3);
+    }
+  }
+  
+  .theme-icon {
+    color: $dark-text;
+    
+    &.light-icon {
+      display: none;
     }
     
-    &.active {
-      background-color: rgba(255, 68, 68, 0.5);
+    &.dark-icon {
+      display: inline;
     }
   }
 }
