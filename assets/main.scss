@@ -709,8 +709,17 @@ img {
   
   .theme-toggle {
     left: 10px;
-    padding: 6px 10px;
-    font-size: 16px;
+    padding: 1px;
+    
+    span {
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+    
+    .theme-toggle-divider {
+      height: 16px;
+      margin: 0 1px;
+    }
   }
   
   .site-nav {
