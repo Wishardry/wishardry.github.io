@@ -209,22 +209,21 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
-// Red pixelated title - responsive
+// Red pixelated title - responsive with proper mobile handling
 .site-title {
   font-family: 'Pixelify Sans', monospace;
   font-size: 44px;
   font-weight: 700;
   text-align: center;
   display: inline-block;
-  line-height: 1;
+  line-height: 1.2;
   letter-spacing: 1px;
-  margin: 0 100px; // Space for buttons
+  margin: 0 120px; // Space for buttons
   text-transform: uppercase;
   color: $title-color;
   transition: color 0.3s ease;
   position: relative;
   z-index: 1;
-  white-space: nowrap;
   
   &, &:visited {
     color: $title-color;
@@ -236,19 +235,33 @@ h1, h2, h3, h4, h5, h6 {
     color: lighten($title-color, 15%);
   }
   
-  // Responsive font sizes
-  @media screen and (max-width: 800px) {
-    font-size: 32px;
-    margin: 0 80px;
+  .site-title-mobile {
+    display: none;
   }
   
-  @media screen and (max-width: 600px) {
+  // Tablet size
+  @media screen and (max-width: 768px) {
+    font-size: 36px;
+    margin: 0 100px;
+  }
+  
+  // Mobile - show two-line version
+  @media screen and (max-width: 480px) {
     font-size: 24px;
-    margin: 0 60px;
+    margin: 0;
+    
+    .site-title-desktop {
+      display: none;
+    }
+    
+    .site-title-mobile {
+      display: block;
+      line-height: 1.1;
+    }
   }
 }
 
-// Theme toggle single button
+// Theme toggle segmented button (single hitbox)
 .theme-toggle {
   position: absolute;
   top: 50%;
@@ -259,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(255, 156, 86, 0.2);
   border: none;
   border-radius: 8px;
-  padding: 6px 12px;
+  padding: 2px;
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
@@ -271,18 +284,34 @@ h1, h2, h3, h4, h5, h6 {
   &:focus {
     outline: none;
   }
-}
-
-.theme-icon {
-  font-size: 16px;
-  color: $text-color;
   
-  &.light-icon {
-    display: inline;
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 16px;
+    color: $text-color;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
   }
   
-  &.dark-icon {
-    display: none;
+  .theme-toggle-light {
+    background-color: rgba(231, 76, 60, 0.4);
+    color: white;
+  }
+  
+  .theme-toggle-dark {
+    background-color: transparent;
+  }
+  
+  .theme-toggle-divider {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin: 0 2px;
   }
 }
 
@@ -293,17 +322,23 @@ body.dark-mode {
     &:hover {
       background-color: rgba(255, 68, 68, 0.3);
     }
-  }
-  
-  .theme-icon {
-    color: $dark-text;
     
-    &.light-icon {
-      display: none;
+    span {
+      color: $dark-text;
     }
     
-    &.dark-icon {
-      display: inline;
+    .theme-toggle-light {
+      background-color: transparent;
+      color: $dark-text;
+    }
+    
+    .theme-toggle-dark {
+      background-color: rgba(255, 68, 68, 0.5);
+      color: white;
+    }
+    
+    .theme-toggle-divider {
+      background-color: rgba(255, 255, 255, 0.2);
     }
   }
 }
