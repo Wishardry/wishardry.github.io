@@ -1,11 +1,7 @@
-<div class="theme-toggle" id="theme-toggle">
-  <button class="theme-toggle-btn light-btn" onclick="setTheme('light')" aria-label="Light mode">
-    <span>☀</span>
-  </button>
-  <button class="theme-toggle-btn dark-btn" onclick="setTheme('dark')" aria-label="Dark mode">
-    <span>☽</span>
-  </button>
-</div>
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+  <span class="theme-icon light-icon">☀</span>
+  <span class="theme-icon dark-icon">☽</span>
+</button>
 
 <script>
   // Check for saved theme preference or default to light mode
@@ -16,33 +12,17 @@
     document.body.classList.add('dark-mode');
   }
   
-  // Update active button
-  updateActiveButton(currentTheme);
-  
-  function setTheme(theme) {
+  function toggleTheme() {
     const body = document.body;
     
-    if (theme === 'dark') {
-      body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
+    if (body.classList.contains('dark-mode')) {
+      // Switch to light mode
       body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
-    }
-    
-    updateActiveButton(theme);
-  }
-  
-  function updateActiveButton(theme) {
-    const lightBtn = document.querySelector('.light-btn');
-    const darkBtn = document.querySelector('.dark-btn');
-    
-    if (theme === 'dark') {
-      lightBtn.classList.remove('active');
-      darkBtn.classList.add('active');
     } else {
-      lightBtn.classList.add('active');
-      darkBtn.classList.remove('active');
+      // Switch to dark mode
+      body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
     }
   }
 </script>
