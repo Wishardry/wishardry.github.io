@@ -2,7 +2,6 @@
 layout: home
 ---
 
-## Welcome!
 
 This is home to Wishardry's wild thoughts, embodied in the form of writing. 
 
