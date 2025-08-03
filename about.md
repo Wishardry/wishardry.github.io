@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Hello hello :)
 
-Welcome to (hopefully) a cozy corner of the internet. I'm Wishardry (pronounced wish + wizardry), just another person trying to learn red-teaming tactics on LLMs. Maybe I'll have some useful insights, maybe not. Honestly half the time I'm just here to yap. 
+Welcome to (hopefully) a cozy corner of the internet. I'm Wishardry (pronounced *wish* + wiz*ardry*), just another person trying to learn red-teaming tactics on LLMs. Maybe I'll have some useful insights, maybe not. Honestly half the time I'm just here to yap. 
 
 Things are currently quite empty, but hey, everyone starts somewhere. I'll be updating this page with more links and more design later once I have a few blog posts up. 
 
