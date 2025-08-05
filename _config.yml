@@ -23,7 +23,7 @@ minima:
 
 # Site-wide settings
 show_excerpts: true # Show post excerpts on homepage
-google_analytics: # Add your Google Analytics ID if you want
+google_analytics: G-CZR3S9566M
 
 # Exclude from processing
 exclude:
