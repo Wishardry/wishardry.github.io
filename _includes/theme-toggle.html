@@ -1,29 +1,74 @@
-<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
-  <span class="theme-toggle-light">☀</span>
-  <span class="theme-toggle-divider"></span>
-  <span class="theme-toggle-dark">☽</span>
-</button>
-
-<script>
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
+// Theme toggle segmented button (single hitbox)
+.theme-toggle {
+  position: absolute;
+  top: 50%;
+  left: $spacing-unit;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 156, 86, 0.2);
+  border: none;
+  border-radius: 8px;
+  padding: 2px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
   
-  // Apply saved theme on load
-  if (currentTheme === 'dark') {
-    document.body.classList.add('dark-mode');
+  &:hover {
+    background-color: rgba(255, 156, 86, 0.3);
   }
   
-  function toggleTheme() {
-    const body = document.body;
+  &:focus {
+    outline: none;
+  }
+  
+  span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    font-size: 16px;
+    color: $text-color;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+    min-width: 24px;
+    min-height: 24px;
+  }
+  
+  .theme-toggle-light {
+    background-color: rgba(231, 76, 60, 0.4);
+    color: white;
+  }
+  
+  .theme-toggle-dark {
+    background-color: transparent;
+    color: rgba(45, 52, 54, 0.7);
+  }
+  
+  .theme-toggle-divider {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0;
+    margin: 0 2px;
+  }
+  
+  // Mobile adjustments
+  @media screen and (max-width: 600px) {
+    left: 10px;
+    padding: 1px;
     
-    if (body.classList.contains('dark-mode')) {
-      // Switch to light mode
-      body.classList.remove('dark-mode');
-      localStorage.setItem('theme', 'light');
-    } else {
-      // Switch to dark mode
-      body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
+    span {
+      padding: 4px 8px;
+      font-size: 14px;
+      min-width: 20px;
+      min-height: 20px;
+    }
+    
+    .theme-toggle-divider {
+      height: 16px;
+      margin: 0 1px;
     }
   }
-</script>
+}
