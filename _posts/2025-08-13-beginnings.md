@@ -57,7 +57,7 @@ I don’t think jailbreaking is very difficult, if you know how to learn. It too
 
 [I’ll be here.](https://discord.gg/u5gAD3HHtx) :)
 
-
+P.S.: Expect more of this style of writing. Sometimes, I'll polish it. Sometimes, it will literally be my thought process. If you do enjoy this style though, let me know. 
 
 Footnotes:
 [^1]: Hawaiian Havoc
