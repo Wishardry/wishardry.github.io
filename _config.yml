@@ -15,6 +15,12 @@ permalink: /:title/
 
 # Social media (optional - delete lines you don't use)
 
+# Pinned posts - edit this list to change what appears at the top of homepage
+# Use the URL slug (the part after your domain, like /beginnings/ or /A-River-Not-A-Wall/)
+pinned_posts:
+  - /beginnings/
+  - /A-River-Not-A-Wall/
+  - /resources/
 
 # Minima theme settings
 minima:
