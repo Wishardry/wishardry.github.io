@@ -302,7 +302,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle segmented button (single hitbox)
+// Theme toggle segmented button (single hitbox) - FIXED VERSION
 .theme-toggle {
   position: absolute;
   top: 50%;
@@ -336,6 +336,9 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 6px;
     transition: all 0.3s ease;
     user-select: none;
+    min-width: 28px;
+    min-height: 28px;
+    box-sizing: border-box;
   }
   
   .theme-toggle-light {
@@ -345,6 +348,7 @@ h1, h2, h3, h4, h5, h6 {
   
   .theme-toggle-dark {
     background-color: transparent;
+    color: rgba(45, 52, 54, 0.7);
   }
   
   .theme-toggle-divider {
@@ -353,6 +357,25 @@ h1, h2, h3, h4, h5, h6 {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 0;
     margin: 0 2px;
+    flex-shrink: 0;
+  }
+  
+  // Mobile adjustments
+  @media screen and (max-width: 600px) {
+    left: 10px;
+    padding: 1px;
+    
+    span {
+      padding: 4px 8px;
+      font-size: 14px;
+      min-width: 24px;
+      min-height: 24px;
+    }
+    
+    .theme-toggle-divider {
+      height: 16px;
+      margin: 0 1px;
+    }
   }
 }
 
@@ -370,7 +393,7 @@ body.dark-mode {
     
     .theme-toggle-light {
       background-color: transparent;
-      color: $dark-text;
+      color: rgba(255, 245, 245, 0.7);
     }
     
     .theme-toggle-dark {
@@ -705,21 +728,6 @@ img {
   
   .site-title {
     font-size: 24px;
-  }
-  
-  .theme-toggle {
-    left: 10px;
-    padding: 1px;
-    
-    span {
-      padding: 4px 8px;
-      font-size: 14px;
-    }
-    
-    .theme-toggle-divider {
-      height: 16px;
-      margin: 0 1px;
-    }
   }
   
   .site-nav {
