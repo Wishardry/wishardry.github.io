@@ -27,16 +27,17 @@ As I write this blog post, I’m at a skill plateau, and I’m being slightly pu
 
 Going back to the beginning, I burnt out really quickly after a few days of intense figuring out what the heck I was doing during my first competition that I threw myself into without knowing anything beforehand (hello Hawaiian Havoc, *Model refused to respond* and Athletic_Circuit). The thing that carried me through these rough patches was ironically the bugging in my mind of “You must do this the thing is waiting for you it’s interesting go do it me need more food-“ yeah, I think you get the idea of what my brain does to me when it locks onto something interesting. 
 
-Still: take breaks. You won’t learn anything if you don’t take time off to consolidate. In fact, most of my large know-how growth spurts came from my time off; first, the mini-break during the burnout for HH[1], and second, after the HH competition and losing where to head to next [2] - this latter one really took it out of me for a while. (But I have countertips! First: remember to use Google AI studio. Second: Gemini seriously carried here with at least giving me some ideas of where to continue and what to do - ask it for drills after you give it a small jailbreak to get its lips loose. Hey, practicing on Gemini is still good practice, unless you want to just…steal a jailbreak, [which I won’t stop you from doing](https://www.injectprompt.com)). 
+Still: take breaks. You won’t learn anything if you don’t take time off to consolidate. In fact, most of my large know-how growth spurts came from my time off; first, the mini-break during the burnout for HH[^1], and second, after the HH competition and losing where to head to next [^2] - this latter one really took it out of me for a while. (But I have countertips! First: remember to use Google AI studio. Second: Gemini seriously carried here with at least giving me some ideas of where to continue and what to do - ask it for drills after you give it a small jailbreak to get its lips loose. Hey, practicing on Gemini is still good practice, unless you want to just…steal a jailbreak, [which I won’t stop you from doing](https://www.injectprompt.com)). 
 
 After the first two breaks, things started going a bit more smoothly. After accidentally stumbling upon an opportunity to extract the Claude system prompt in the middle of the night, I decided to start doing Gray Swan. 
 
-Things were going well until I got absolutely crushed by a model under the code name Capybara [3] in Wave 1 agents (still will always be traumatized by that). The break I took from that led me to some of my craziest discoveries yet after consolidating the knowledge I obtained up to date (you’ll see!). After that consolidated knowledge, I took a stab at Swan Wave 6 before I started grinding my research (and GPT-OSS-20B competition…and now we’re up to date with my procrastination on all fronts, lol.) 
+Things were going well until I got absolutely crushed by a model under the code name Capybara [^3] in Wave 1 agents (still will always be traumatized by that). The break I took from that led me to some of my craziest discoveries yet after consolidating the knowledge I obtained up to date (you’ll see!). After that consolidated knowledge, I took a stab at Swan Wave 6 before I started grinding my research (and GPT-OSS-20B competition…and now we’re up to date with my procrastination on all fronts, lol.) 
 
 
 
 So yes, at the end of the day: these ups and downs have been the result of a mixture of burnout, apprehension at the task, consolidation during downtime (translation: my  brain’s lack of the ability to downtime), and…a lot of procrastination lately after I’ve passed the first difficulty curve. 
 
+---
 ---
 
 What do I want to do? I want to do a couple of things. First, I want to finish at least one damn project so that I can call it a day (for example, this blog. It has been haunting me that Claude wrote this in my panic to get my ideas out. I will not allow these blog posts to stay. I will write them. I will write them myself. I will make sure that they receive my heart and soul-)
@@ -59,6 +60,6 @@ I don’t think jailbreaking is very difficult, if you know how to learn. It too
 
 
 Footnotes:
-[^1] Hawaiian Havoc
-[^2] check out the (to be done)[resources page](**Link Here, TBD**) if you need places to hone your skills with!
-[^3] This is the name of the model for me, but it will be randomized for you. 
+[^1]: Hawaiian Havoc
+[^2]: check out the (to be done)[resources page](**Link Here, TBD**) if you need places to hone your skills with!
+[^3]: This is the name of the model for me, but it will be randomized for you. 
