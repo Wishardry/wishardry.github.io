@@ -504,23 +504,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Hamburger lines
+// Hamburger lines - ensuring equal thickness
 .hamburger-line {
   display: block;
-  width: 26px;
+  width: 26px; // Increased from 20px to make X longer
   height: 3px;
   background-color: $text-color;
-  margin: 3px 0; // Increased margin for better spacing
+  margin: 2px 0;
   transition: all 0.3s ease;
-  border-radius: 2px; 
-  transform-origin: center center;
-  position: relative;
+  border-radius: 1px; // Reduced radius for more consistent rendering
+  transform-origin: center;
+  flex-shrink: 0; // Prevent any flex compression
+  box-sizing: border-box; // Ensure consistent box model
 }
 
 // Hamburger animation when active (X shape) - PROPERLY CENTERED
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(0px, 6px);
+    transform: rotate(45deg) translate(0px, 7px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -529,7 +530,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(0px, -6px);
+    transform: rotate(-45deg) translate(0px, -7px);
   }
 }
 
