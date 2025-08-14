@@ -25,11 +25,9 @@ https://app.grayswan.ai/arena/blog/ai-red-teaming-prompt-engineering-resources-g
 
 ## Social Media:
 
-https://www.twitch.tv/jojomaw 
+[https://www.twitch.tv/jojomaw](https://www.twitch.tv/jojomaw) - a friend of mine, and an awesome guy :D
 
-https://www.twitch.tv/hackapromptofficial 
-
-https://www.youtube.com/channel/UCQjJASvTuORUcIBEbNYsrXA
+[https://www.twitch.tv/hackapromptofficial](https://www.twitch.tv/hackapromptofficial) - HackAPrompt Twitch, for livestreams. All livestreams should be archived [here](https://www.youtube.com/channel/UCQjJASvTuORUcIBEbNYsrXA).
 
 The trifetica of servers: [BASI](https://discord.gg/basi), [HackAPrompt](https://www.hackaprompt.com/), and [Gray Swan Arena](https://app.grayswan.ai/arena). The latter two can be found on their respective websites, linked. Also, the latter two are practice grounds, so go grind there :)
 
