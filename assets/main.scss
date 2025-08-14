@@ -522,6 +522,7 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger animation when active (X shape) - SIMPLE CENTER ROTATION
 .hamburger-active {
   .hamburger-line:nth-child(1) {
+    width: 25px; // Reduced by 1px
     transform: translateY(7px) rotate(45deg);
   }
   
@@ -530,6 +531,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
+    width: 25px; // Reduced by 1px
     transform: translateY(-7px) rotate(-45deg);
   }
 }
