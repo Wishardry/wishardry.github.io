@@ -1,5 +1,7 @@
 This is more for me and technical side of maintaining this blog posting stuff than an actual README. 
 
+The entire site is made by Claude. 
+
 # Blog Post Creation Guide for Wishardry's Red Room
 
 ## Quick Start Checklist
