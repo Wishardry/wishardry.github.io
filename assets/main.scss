@@ -523,7 +523,7 @@ h1, h2, h3, h4, h5, h6 {
 .hamburger-active {
   .hamburger-line:nth-child(1) {
     width: 45px; // Try longer lines
-    transform: translateX(0px) rotate(45deg) translate(2.5px, 0px);
+    transform: translateX(0px) rotate(45deg) translate(4px, 0px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -533,7 +533,7 @@ h1, h2, h3, h4, h5, h6 {
   
   .hamburger-line:nth-child(3) {
     width: 45px; // Try longer lines
-    transform: translateX(0px) rotate(-45deg) translate(2.5px, -0px);
+    transform: translateX(0px) rotate(-45deg) translate(4px, -0px);
   }
 }
 
