@@ -2,19 +2,85 @@
 
   <div class="wrapper">
     {%- include theme-toggle.html -%}
-    
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-      <span class="site-title-desktop">WISHARDRY'S RED ROOM</span>
-      <span class="site-title-mobile">WISHARDRY'S<br>RED ROOM</span>
-    </a>
 
-    <nav class="site-nav">
-      {%- for path in site.pages -%}
-        {%- if path.title and path.permalink -%}
-          <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </nav>
+```
+<a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+  <span class="site-title-desktop">WISHARDRY'S RED ROOM</span>
+  <span class="site-title-mobile">WISHARDRY'S<br>RED ROOM</span>
+</a>
+
+<!-- Regular Navigation (Desktop) -->
+<nav class="site-nav">
+  {%- for path in site.pages -%}
+    {%- if path.title and path.permalink -%}
+      <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</nav>
+
+<!-- Hamburger Menu Button (Mobile Only) -->
+<button class="hamburger-menu" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+
+<!-- Mobile Navigation Dropdown -->
+<div class="mobile-nav-dropdown" id="mobile-nav">
+  {%- for path in site.pages -%}
+    {%- if path.title and path.permalink -%}
+      <a class="mobile-nav-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
+```
+
   </div>
 
 </header>
+
+<script>
+function toggleMobileMenu() {
+  const hamburger = document.getElementById('hamburger-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  
+  // Toggle hamburger animation
+  hamburger.classList.toggle('hamburger-active');
+  
+  // Toggle mobile nav visibility
+  mobileNav.classList.toggle('mobile-nav-open');
+  
+  // Close menu when clicking outside
+  if (mobileNav.classList.contains('mobile-nav-open')) {
+    document.addEventListener('click', closeMobileMenuOutside);
+  } else {
+    document.removeEventListener('click', closeMobileMenuOutside);
+  }
+}
+
+function closeMobileMenuOutside(event) {
+  const hamburger = document.getElementById('hamburger-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  
+  // Close if clicking outside hamburger or nav
+  if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+    hamburger.classList.remove('hamburger-active');
+    mobileNav.classList.remove('mobile-nav-open');
+    document.removeEventListener('click', closeMobileMenuOutside);
+  }
+}
+
+// Close mobile menu when clicking on a link
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const hamburger = document.getElementById('hamburger-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+      hamburger.classList.remove('hamburger-active');
+      mobileNav.classList.remove('mobile-nav-open');
+      document.removeEventListener('click', closeMobileMenuOutside);
+    });
+  });
+});
+</script>
