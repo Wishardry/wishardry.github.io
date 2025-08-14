@@ -35,70 +35,95 @@ layout: default
   {%- endif -%}
 
   {%- if site.posts.size > 0 -%}
-    <h2>Recent Posts</h2>
-    
-    <ul class="post-list" id="post-list">
-      {%- assign displayed_count = 0 -%}
-      {%- for post in site.posts -%}
-        {%- if displayed_count < 8 -%}
-        <li>
-          <a href="{{ post.url | relative_url }}" class="post-card">
-            <div class="post-header">
-              <h3 class="post-link">{{ post.title | escape }}</h3>
-              <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
-            </div>
-            <div class="post-excerpt">
-              {{ post.excerpt | strip_html | truncatewords: 50 }}
-            </div>
-          </a>
-        </li>
-        {%- assign displayed_count = displayed_count | plus: 1 -%}
-        {%- endif -%}
-      {%- endfor -%}
-    </ul>
-    
-    {%- assign remaining_posts = site.posts.size -%}
-    {%- if remaining_posts > 8 -%}
-    <div class="load-more-container">
-      <button class="load-more-btn" onclick="loadMorePosts()">Load More Posts</button>
+    <!-- Tab Interface -->
+    <div class="tabs-container">
+      <div class="tabs-wrapper">
+        <div class="tab" data-tab="all" onclick="switchTab('all')">All posts</div>
+        <div class="tab" data-tab="informative" onclick="switchTab('informative')">Informative</div>
+        <div class="tab" data-tab="random" onclick="switchTab('random')">Random</div>
+        <div class="tab" data-tab="shitposting" onclick="switchTab('shitposting')">The Corner</div>
+        <div class="tab" data-tab="llm" onclick="switchTab('llm')">LLM stuff</div>
+      </div>
+      <div class="main-line"></div>
     </div>
-    {%- endif -%}
+
+    <!-- Tab Content Areas -->
+    <div class="tab-content active" id="tab-all">
+      <div class="tab-description">Here is everything from Wishardry, chronologically.</div>
+      <ul class="post-list" id="post-list-all">
+        <!-- All posts will be populated by JavaScript -->
+      </ul>
+      <div class="load-more-container" id="load-more-all" style="display: none;">
+        <button class="load-more-btn" onclick="loadMorePosts('all')">Load More Posts</button>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-informative">
+      <div class="tab-description">All of the informational posts, here.</div>
+      <ul class="post-list" id="post-list-informative">
+        <!-- Informative posts will be populated by JavaScript -->
+      </ul>
+    </div>
+
+    <div class="tab-content" id="tab-random">
+      <div class="tab-description">An assortment of things, here and there.</div>
+      <ul class="post-list" id="post-list-random">
+        <!-- Random posts will be populated by JavaScript -->
+      </ul>
+    </div>
+
+    <div class="tab-content" id="tab-shitposting">
+      <div class="tab-description">welcome to shitposting from Wishardry :)</div>
+      <ul class="post-list" id="post-list-shitposting">
+        <!-- Corner posts will be populated by JavaScript -->
+      </ul>
+    </div>
+
+    <div class="tab-content" id="tab-llm">
+      <div class="tab-description">LLM generated content.</div>
+      <ul class="post-list" id="post-list-llm">
+        <!-- LLM posts will be populated by JavaScript -->
+      </ul>
+    </div>
+
+    <!-- Empty state template (hidden, cloned by JavaScript) -->
+    <div class="empty-state" id="empty-state-template" style="display: none;">
+      <p>The wizard hasn't Wished upon this Red Room yet. Soon though...😉</p>
+    </div>
   {%- endif -%}
 
 </div>
 
 <script>
-  let currentPostCount = 8;
-  const postsPerLoad = 8;
-  const pinnedUrls = [
-    {%- for pinned_url in site.pinned_posts -%}
-    {{ pinned_url | jsonify }}{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
-  ];
+  // All posts data
   const allPosts = [
-    {%- assign skip_count = 0 -%}
-    {%- for post in site.posts -%}
-      {%- if skip_count >= 8 -%}
-      {
-        title: {{ post.title | jsonify }},
-        url: {{ post.url | relative_url | jsonify }},
-        date: {{ post.date | date: "%B %-d, %Y" | jsonify }},
-        excerpt: {{ post.excerpt | strip_html | truncatewords: 50 | jsonify }}
-      }{%- unless forloop.last -%},{%- endunless -%}
-      {%- endif -%}
-      {%- assign skip_count = skip_count | plus: 1 -%}
+    {%- for post in site.posts reversed -%}
+    {
+      title: {{ post.title | jsonify }},
+      url: {{ post.url | relative_url | jsonify }},
+      date: {{ post.date | date: "%B %-d, %Y" | jsonify }},
+      excerpt: {{ post.excerpt | strip_html | truncatewords: 50 | jsonify }},
+      categories: {{ post.categories | jsonify }}
+    }{%- unless forloop.last -%},{%- endunless -%}
     {%- endfor -%}
   ];
-  
-  function loadMorePosts() {
-    const postList = document.getElementById('post-list');
-    const loadMoreBtn = document.querySelector('.load-more-btn');
-    const endIndex = Math.min(currentPostCount + postsPerLoad - 8, allPosts.length);
-    
-    for (let i = 0; i < endIndex && currentPostCount - 8 < allPosts.length; i++) {
-      const post = allPosts[currentPostCount - 8];
-      const li = document.createElement('li');
-      li.innerHTML = `
+
+  // Posts organized by category (newest first for category tabs)
+  const postsByCategory = {
+    all: [...allPosts], // Oldest first for "All posts"
+    informative: allPosts.filter(post => post.categories.includes('informative')).reverse(),
+    random: allPosts.filter(post => post.categories.includes('random')).reverse(),
+    shitposting: allPosts.filter(post => post.categories.includes('shitposting')).reverse(),
+    llm: allPosts.filter(post => post.categories.includes('llm')).reverse()
+  };
+
+  // Load more functionality for "All posts"
+  let currentAllPostsCount = 0;
+  const postsPerLoad = 8;
+
+  function createPostElement(post) {
+    return `
+      <li>
         <a href="${post.url}" class="post-card">
           <div class="post-header">
             <h3 class="post-link">${post.title}</h3>
@@ -108,13 +133,87 @@ layout: default
             ${post.excerpt}
           </div>
         </a>
-      `;
-      postList.appendChild(li);
-      currentPostCount++;
-    }
+      </li>
+    `;
+  }
+
+  function createEmptyState() {
+    return `<li class="empty-state"><p>The wizard hasn't Wished upon this Red Room yet. Soon though...😉</p></li>`;
+  }
+
+  function populateTab(tabName) {
+    const posts = postsByCategory[tabName];
+    const postList = document.getElementById(`post-list-${tabName}`);
     
-    if (currentPostCount - 8 >= allPosts.length) {
-      loadMoreBtn.style.display = 'none';
+    if (!posts || posts.length === 0) {
+      postList.innerHTML = createEmptyState();
+      return;
+    }
+
+    if (tabName === 'all') {
+      // Load first batch for "All posts"
+      currentAllPostsCount = Math.min(postsPerLoad, posts.length);
+      postList.innerHTML = posts.slice(0, currentAllPostsCount).map(createPostElement).join('');
+      
+      // Show/hide load more button
+      const loadMoreContainer = document.getElementById('load-more-all');
+      if (posts.length > currentAllPostsCount) {
+        loadMoreContainer.style.display = 'block';
+      } else {
+        loadMoreContainer.style.display = 'none';
+      }
+    } else {
+      // Show all posts for other categories
+      postList.innerHTML = posts.map(createPostElement).join('');
     }
   }
+
+  function loadMorePosts(tabName) {
+    if (tabName !== 'all') return;
+    
+    const posts = postsByCategory.all;
+    const postList = document.getElementById('post-list-all');
+    const loadMoreContainer = document.getElementById('load-more-all');
+    
+    const startIndex = currentAllPostsCount;
+    const endIndex = Math.min(currentAllPostsCount + postsPerLoad, posts.length);
+    
+    const newPosts = posts.slice(startIndex, endIndex).map(createPostElement).join('');
+    postList.innerHTML += newPosts;
+    
+    currentAllPostsCount = endIndex;
+    
+    if (currentAllPostsCount >= posts.length) {
+      loadMoreContainer.style.display = 'none';
+    }
+  }
+
+  function switchTab(tabName) {
+    // Update tab appearance
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    
+    // Update content visibility
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById(`tab-${tabName}`).classList.add('active');
+    
+    // Populate content if not already done
+    const postList = document.getElementById(`post-list-${tabName}`);
+    if (postList.children.length === 0) {
+      populateTab(tabName);
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set default active tab
+    document.querySelector('[data-tab="all"]').classList.add('active');
+    
+    // Populate the default tab
+    populateTab('all');
+  });
 </script>
