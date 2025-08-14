@@ -504,6 +504,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+
 // Hamburger lines
 .hamburger-line {
   display: block;
@@ -518,21 +519,21 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 3px; // Ensure minimum thickness
 }
 
-// Hamburger animation when active (X shape) - FIXED VALUES
+// Hamburger animation when active (X shape) - CLEAN RESET
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    width: 26.5px; // Extended by 0.5px
-    transform: translateX(3px) rotate(45deg) translate(2px, 5.5px);
+    width: 28px; // Try longer lines
+    transform: translateX(1px) rotate(45deg) translate(0px, 7px);
   }
   
   .hamburger-line:nth-child(2) {
     opacity: 0;
-    transform: translateX(3px) scaleX(0);
+    transform: scaleX(0);
   }
   
   .hamburger-line:nth-child(3) {
-    width: 26.5px; // Extended by 0.5px
-    transform: translateX(3px) rotate(-45deg) translate(2px, -6.5px);
+    width: 28px; // Try longer lines
+    transform: translateX(1px) rotate(-45deg) translate(0px, -7px);
   }
 }
 
