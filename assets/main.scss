@@ -220,9 +220,7 @@ body.dark-mode {
     font-weight: bold;
   }
   
-  .theme-toggle-divider {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+  // REMOVED DIVIDER from dark mode too
   
   .hamburger-menu {
     background-color: rgba(255, 68, 68, 0.15);
@@ -381,7 +379,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle - COMPLETELY FIXED VERSION
+// Theme toggle - FIXED VERSION (no gray divider)
 .theme-toggle {
   position: absolute;
   top: 50%;
@@ -407,14 +405,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Individual toggle sections
+// Individual toggle sections - back to original size
 .theme-toggle span {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
   border-radius: 4px;
   transition: all 0.3s ease;
   user-select: none;
@@ -434,28 +432,17 @@ h1, h2, h3, h4, h5, h6 {
   color: rgba(45, 52, 54, 0.8);
 }
 
-// Divider
-.theme-toggle-divider {
-  width: 1px;
-  height: 16px;
-  background-color: rgba(0, 0, 0, 0.15);
-  margin: 0 1px;
-  flex-shrink: 0;
-}
+// REMOVED DIVIDER COMPLETELY - no more gray chunk!
 
-// Mobile adjustments for theme toggle
-@media screen and (max-width: 600px) {
+// Mobile adjustments for theme toggle - back to original size
+@media screen and (max-width: 900px) {
   .theme-toggle {
     left: 10px;
     
     span {
-      width: 20px;
-      height: 20px;
-      font-size: 12px;
-    }
-    
-    .theme-toggle-divider {
-      height: 14px;
+      width: 28px;
+      height: 28px;
+      font-size: 14px;
     }
   }
 }
@@ -884,16 +871,51 @@ img {
   box-shadow: 0 2px 8px rgba(255, 140, 66, 0.1);
 }
 
-// Mobile responsiveness
-@media screen and (max-width: 600px) {
+// Mobile responsiveness - EXTENDED to solve overlap
+@media screen and (max-width: 900px) {
   .site-header {
     min-height: 50px;
     padding: 10px 0;
   }
   
   .site-title {
+    font-size: 32px;
+    margin: 0 80px; // Less margin for larger screens
+  }
+  
+  // Hide regular navigation on tablets/mobile to prevent overlap
+  .site-nav {
+    display: none !important;
+  }
+  
+  // Show hamburger menu on tablets/mobile
+  .hamburger-menu {
+    display: flex !important; // Force show and use flex for centering
+    right: 10px; // Adjust spacing
+    width: 44px;
+    height: 44px;
+  }
+  
+  // Hide mobile nav dropdown by default
+  .mobile-nav-dropdown {
+    display: none !important;
+    right: 5px;
+    top: 60px;
+    
+    // Only show when specifically opened
+    &.mobile-nav-open {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Smaller mobile screens
+@media screen and (max-width: 600px) {
+  .site-title {
     font-size: 24px;
-    margin: 0 80px; // Less margin on mobile
+    margin: 0 60px; // Even less margin on small screens
   }
   
   // Mobile title switching
@@ -905,31 +927,9 @@ img {
     display: block !important;
   }
   
-  // Hide regular navigation on mobile
-  .site-nav {
-    display: none !important;
-  }
-  
-  // Show hamburger menu on mobile
   .hamburger-menu {
-    display: flex !important; // Force show and use flex for centering
-    right: 10px; // Adjust for mobile spacing
     width: 40px;
     height: 40px;
-  }
-  
-  // Hide mobile nav dropdown by default
-  .mobile-nav-dropdown {
-    display: none !important;
-    right: 5px;
-    top: 60px; // Adjust for mobile header height
-    
-    // Only show when specifically opened
-    &.mobile-nav-open {
-      display: block !important;
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
   
   .page-content::before,
