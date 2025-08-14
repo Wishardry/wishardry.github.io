@@ -59,7 +59,203 @@ h1 {
   }
 }
 
-// Dark mode styles
+// Tab Interface Styling
+.tabs-container {
+  position: relative;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.tab {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+  
+  // Inactive tab styling - floating above main line
+  background-color: rgba(231, 76, 60, 0.15);
+  border: 2px solid rgba(231, 76, 60, 0.2);
+  border-radius: 6px;
+  color: $text-color;
+  margin-bottom: 8px; // Gap above main line
+  
+  &:hover {
+    background-color: rgba(231, 76, 60, 0.25);
+    border-color: rgba(231, 76, 60, 0.4);
+  }
+  
+  // Active tab styling - connected to main line
+  &.active {
+    background-color: $header-background;
+    border-color: $header-background;
+    color: $text-color;
+    font-weight: 600;
+    margin-bottom: 0; // No gap - connects to main line
+    border-bottom-left-radius: 12px;  // Rounded bottom corners
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 6px;     // Keep top corners less rounded
+    border-top-right-radius: 6px;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.1);
+    
+    &:hover {
+      background-color: lighten($header-background, 5%);
+    }
+  }
+}
+
+.main-line {
+  height: 2px;
+  background-color: $margin-line-color;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+// Tab content areas
+.tab-content {
+  display: none;
+  
+  &.active {
+    display: block;
+  }
+}
+
+.tab-description {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: $grey-color;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid $margin-line-color;
+  margin-bottom: 20px;
+}
+
+// Empty state styling
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: $grey-color;
+  font-style: italic;
+  
+  p {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+
+// Tab Interface Styling
+.tabs-container {
+  position: relative;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.tabs-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.tab {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+  
+  // Inactive tab styling - floating above main line
+  background-color: rgba(231, 76, 60, 0.15);
+  border: 2px solid rgba(231, 76, 60, 0.2);
+  border-radius: 6px;
+  color: $text-color;
+  margin-bottom: 8px; // Gap above main line
+  
+  &:hover {
+    background-color: rgba(231, 76, 60, 0.25);
+    border-color: rgba(231, 76, 60, 0.4);
+  }
+  
+  // Active tab styling - connected to main line
+  &.active {
+    background-color: $header-background;
+    border-color: $header-background;
+    color: $text-color;
+    font-weight: 600;
+    margin-bottom: 0; // No gap - connects to main line
+    border-bottom-left-radius: 12px;  // Rounded bottom corners
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 6px;     // Keep top corners less rounded
+    border-top-right-radius: 6px;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.1);
+    
+    &:hover {
+      background-color: lighten($header-background, 5%);
+    }
+  }
+}
+
+.main-line {
+  height: 2px;
+  background-color: $margin-line-color;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+// Tab content areas
+.tab-content {
+  display: none;
+  
+  &.active {
+    display: block;
+  }
+}
+
+.tab-description {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  color: $grey-color;
+  padding: 20px 0 10px 0;
+  border-bottom: 1px solid $margin-line-color;
+  margin-bottom: 20px;
+}
+
+// Empty state styling
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: $grey-color;
+  font-style: italic;
+  
+  p {
+    font-size: 18px;
+    margin: 0;
+  }
+}
+
+// Dark mode tab styling
 body.dark-mode {
   background-color: $dark-background;
   color: $dark-text;
@@ -70,6 +266,41 @@ body.dark-mode {
   
   h1::after {
     background-color: $dark-margin-line;
+  }
+  
+  .tab {
+    background-color: rgba(255, 68, 68, 0.15);
+    border-color: rgba(255, 68, 68, 0.2);
+    color: $dark-text;
+    
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.25);
+      border-color: rgba(255, 68, 68, 0.4);
+    }
+    
+    &.active {
+      background-color: $dark-header;
+      border-color: $dark-header;
+      color: $dark-text;
+      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
+      
+      &:hover {
+        background-color: lighten($dark-header, 5%);
+      }
+    }
+  }
+  
+  .main-line {
+    background-color: $dark-margin-line;
+  }
+  
+  .tab-description {
+    color: $dark-meta-color;
+    border-bottom-color: $dark-margin-line;
+  }
+  
+  .empty-state {
+    color: $dark-meta-color;
   }
   
   .site-header {
@@ -256,6 +487,74 @@ body.dark-mode {
     &:hover {
       background-color: lighten($dark-accent-line, 10%);
     }
+  }
+  
+  // Dark mode tab styling
+  .tab {
+    background-color: rgba(255, 68, 68, 0.15);
+    border-color: rgba(255, 68, 68, 0.2);
+    color: $dark-text;
+    
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.25);
+      border-color: rgba(255, 68, 68, 0.4);
+    }
+    
+    &.active {
+      background-color: $dark-header;
+      border-color: $dark-header;
+      color: $dark-text;
+      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
+      
+      &:hover {
+        background-color: lighten($dark-header, 5%);
+      }
+    }
+  }
+  
+  .main-line {
+    background-color: $dark-margin-line;
+  }
+  
+  .tab-description {
+    color: $dark-meta-color;
+    border-bottom-color: $dark-margin-line;
+  }
+  
+  .empty-state {
+    color: $dark-meta-color;
+  }
+}
+
+// Mobile responsiveness for tabs
+@media screen and (max-width: 768px) {
+  .tabs-wrapper {
+    gap: 6px;
+  }
+  
+  .tab {
+    font-size: 14px;
+    padding: 10px 16px;
+    
+    // Force wrap to 2-3 rows on small screens
+    flex: 0 1 calc(50% - 3px);
+    max-width: calc(50% - 3px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tab {
+    font-size: 13px;
+    padding: 8px 12px;
+    
+    // Even smaller on very small screens
+    flex: 0 1 calc(33.333% - 4px);
+    max-width: calc(33.333% - 4px);
+  }
+  
+  .tab-description {
+    font-size: 14px;
+    padding: 15px 0 8px 0;
   }
 }
 
@@ -503,7 +802,6 @@ h1, h2, h3, h4, h5, h6 {
     outline: none;
   }
 }
-
 
 // Hamburger lines
 .hamburger-line {
@@ -873,6 +1171,38 @@ img {
   height: auto;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(255, 140, 66, 0.1);
+}
+
+// Mobile responsiveness for tabs
+@media screen and (max-width: 768px) {
+  .tabs-wrapper {
+    gap: 6px;
+  }
+  
+  .tab {
+    font-size: 14px;
+    padding: 10px 16px;
+    
+    // Force wrap to 2-3 rows on small screens
+    flex: 0 1 calc(50% - 3px);
+    max-width: calc(50% - 3px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tab {
+    font-size: 13px;
+    padding: 8px 12px;
+    
+    // Even smaller on very small screens
+    flex: 0 1 calc(33.333% - 4px);
+    max-width: calc(33.333% - 4px);
+  }
+  
+  .tab-description {
+    font-size: 14px;
+    padding: 15px 0 8px 0;
+  }
 }
 
 // Mobile responsiveness - EXTENDED to solve overlap
