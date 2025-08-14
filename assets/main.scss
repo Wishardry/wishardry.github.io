@@ -508,20 +508,22 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger lines
 .hamburger-line {
   display: block;
-  width: 24px; // Slightly reduced for better centering
+  width: 26px; // Increased from 20px to make X longer
   height: 3px;
   background-color: $text-color;
-  margin: 2.5px 0; // Adjusted for equal spacing
+  margin: 2px 0;
   transition: all 0.3s ease;
-  border-radius: 1px; // Reduced for sharper appearance
-  transform-origin: center center;
-  position: relative;
+  border-radius: 2px;
+  transform-origin: center;
 }
 
-// Hamburger animation when active (X shape) - CENTERED VERSION
+// Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
+  // Shift the entire hamburger container to center the X
+  transform: translateY(-50%) translateX(3px);
+  
   .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(2px, 9px);
+    transform: rotate(45deg) translate(2px, 7px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -530,7 +532,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(2px, 9px);
+    transform: rotate(-45deg) translate(2px, -7px);
   }
 }
 
