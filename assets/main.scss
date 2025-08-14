@@ -504,9 +504,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-
-
 // Hamburger lines
 .hamburger-line {
   display: block;
@@ -524,7 +521,7 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    transform: translateX(3px) rotate(45deg) translate(2px, 6px);
+    transform: translateX(3px) rotate(45deg) translate(2px, 7px);
   }
   
   .hamburger-line:nth-child(2) {
