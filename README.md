@@ -2,6 +2,12 @@ This is more for me and technical side of maintaining this blog posting stuff th
 
 The entire site is made by Claude. 
 
+## Quick notes:
+informative → "Informative" tab
+random → "Random" tab
+shitposting → "The Corner" tab
+llm → "LLM stuff" tab
+
 # Blog Post Creation Guide for Wishardry's Red Room
 
 ## Quick Start Checklist
