@@ -521,7 +521,7 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    transform: translateX(3px) rotate(45deg) translate(2px, 8px);
+    transform: translateX(3px) rotate(45deg) translate(2px, 5px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -530,7 +530,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    transform: translateX(3px) rotate(-45deg) translate(2px, -8px);
+    transform: translateX(3px) rotate(-45deg) translate(2px, -7px);
   }
 }
 
