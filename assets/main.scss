@@ -140,6 +140,20 @@ body.dark-mode {
     }
   }
   
+  .pinned-card {
+    background-color: rgba(45, 15, 15, 0.6);
+    border-color: rgba(255, 68, 68, 0.4);
+    
+    &:hover {
+      border-color: $dark-title;
+      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+    }
+    
+    .post-link {
+      color: $dark-title;
+    }
+  }
+  
   .post-meta {
     color: $dark-meta-color;
   }
@@ -179,6 +193,38 @@ body.dark-mode {
   
   h2 {
     border-bottom-color: $dark-margin-line;
+  }
+  
+  .hamburger-menu {
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.2);
+    }
+  }
+  
+  .hamburger-line {
+    background-color: $dark-text;
+  }
+  
+  .mobile-nav-dropdown {
+    background-color: rgba(31, 10, 10, 0.95);
+    border-color: $dark-margin-line;
+  }
+  
+  .mobile-nav-link {
+    color: $dark-text;
+    border-bottom-color: rgba(255, 68, 68, 0.2);
+    
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.2);
+    }
+  }
+  
+  .load-more-btn {
+    background-color: $dark-accent-line;
+    
+    &:hover {
+      background-color: lighten($dark-accent-line, 10%);
+    }
   }
 }
 
@@ -364,54 +410,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 
-// Dark mode states
-body.dark-mode {
-  .theme-toggle {
-    background-color: rgba(255, 68, 68, 0.15);
-    border-color: rgba(255, 68, 68, 0.3);
-    
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.25);
-      border-color: rgba(255, 68, 68, 0.5);
-    }
-  }
-  
-  // In dark mode: light button becomes inactive
-  .theme-toggle-light {
-    background-color: transparent;
-    color: rgba(255, 245, 245, 0.6);
-    font-weight: normal;
-  }
-  
-  // In dark mode: dark button becomes active
-  .theme-toggle-dark {
-    background-color: rgba(255, 68, 68, 0.6);
-    color: white;
-    font-weight: bold;
-  }
-  
-  .theme-toggle-divider {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-}
-
-// Mobile adjustments
-@media screen and (max-width: 600px) {
-  .theme-toggle {
-    left: 10px;
-    
-    span {
-      width: 28px;
-      height: 28px;
-      font-size: 14px;
-    }
-    
-    .theme-toggle-divider {
-      height: 20px;
-    }
-  }
-}
-
 // Navigation styling with better contrast
 .site-nav {
   position: absolute;
@@ -531,33 +529,6 @@ body.dark-mode {
   &:hover {
     background-color: rgba(231, 76, 60, 0.1);
     text-decoration: none;
-  }
-}
-
-// Dark mode styles for hamburger and navigation
-body.dark-mode {
-  .hamburger-menu {
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.2);
-    }
-  }
-  
-  .hamburger-line {
-    background-color: $dark-text;
-  }
-  
-  .mobile-nav-dropdown {
-    background-color: rgba(31, 10, 10, 0.95);
-    border-color: $dark-margin-line;
-  }
-  
-  .mobile-nav-link {
-    color: $dark-text;
-    border-bottom-color: rgba(255, 68, 68, 0.2);
-    
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.2);
-    }
   }
 }
 
@@ -697,22 +668,6 @@ body.dark-mode {
   }
 }
 
-body.dark-mode {
-  .pinned-card {
-    background-color: rgba(45, 15, 15, 0.6);
-    border-color: rgba(255, 68, 68, 0.4);
-    
-    &:hover {
-      border-color: $dark-title;
-      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
-    }
-    
-    .post-link {
-      color: $dark-title;
-    }
-  }
-}
-
 // Load more posts button
 .load-more-container {
   text-align: center;
@@ -734,14 +689,6 @@ body.dark-mode {
   &:hover {
     background-color: darken($brand-color, 10%);
     transform: translateY(-2px);
-  }
-}
-
-body.dark-mode .load-more-btn {
-  background-color: $dark-accent-line;
-  
-  &:hover {
-    background-color: lighten($dark-accent-line, 10%);
   }
 }
 
