@@ -1,11 +1,13 @@
----
-# Only the main Sass file needs front matter (the dashes are enough)
----
+-----
 
-@import "minima";
+# Only the main Sass file needs front matter (the dashes are enough)
+
+-----
+
+@import “minima”;
 
 // Import fonts
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap');
+@import url(‘https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400&display=swap’);
 
 // Custom variables
 $content-width: 740px;
@@ -44,716 +46,794 @@ $dark-meta-color: #ffaaaa;  // For post meta
 
 // Headers with divider lines
 h1 {
-  position: relative;
-  padding-bottom: 12px;
-  margin-bottom: 24px;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: $margin-line-color;
-  }
+position: relative;
+padding-bottom: 12px;
+margin-bottom: 24px;
+
+&::after {
+content: ‘’;
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 1px;
+background-color: $margin-line-color;
+}
 }
 
 // Dark mode styles
 body.dark-mode {
-  background-color: $dark-background;
+background-color: $dark-background;
+color: $dark-text;
+
+h1, h2, h3, h4, h5, h6 {
+color: $dark-heading-color;
+}
+
+h1::after {
+background-color: $dark-margin-line;
+}
+
+.site-header {
+background-color: $dark-header;
+border-bottom-color: $dark-separator;
+}
+
+.site-title {
+color: $dark-title;
+z-index: 1;
+position: relative;
+
+```
+&, &:visited {
+  color: $dark-title;
+}
+
+&:hover {
+  color: lighten($dark-title, 15%);  // Lighter red on hover in dark mode
+}
+```
+
+}
+
+.site-nav .page-link,
+.theme-switch {
+background-color: rgba(255, 68, 68, 0.2);
+color: $dark-text;
+z-index: 10;
+
+```
+&:hover {
+  background-color: rgba(255, 68, 68, 0.4);
+}
+```
+
+}
+
+.theme-switch-slider {
+background-color: rgba(255, 68, 68, 0.3);
+
+```
+&::before {
+  background-color: #ff4444;
+}
+```
+
+}
+
+a {
+color: $dark-link;
+
+```
+&:hover {
+  color: $dark-link-hover;
+}
+
+&:visited {
+  color: darken($dark-link, 10%);
+}
+```
+
+}
+
+.post-card {
+background-color: $dark-card;
+border-color: $dark-margin-line;
+
+```
+.post-link {
+  color: $dark-heading-color;
+}
+
+.post-excerpt {
   color: $dark-text;
-  
-  h1, h2, h3, h4, h5, h6 {
-    color: $dark-heading-color;
-  }
-  
-  h1::after {
-    background-color: $dark-margin-line;
-  }
-  
-  .site-header {
-    background-color: $dark-header;
-    border-bottom-color: $dark-separator;
-  }
-  
-  .site-title {
-    color: $dark-title;
-    z-index: 1;
-    position: relative;
-    
-    &, &:visited {
-      color: $dark-title;
-    }
-    
-    &:hover {
-      color: lighten($dark-title, 15%);  // Lighter red on hover in dark mode
-    }
-  }
-  
-  .site-nav .page-link,
-  .theme-switch {
-    background-color: rgba(255, 68, 68, 0.2);
-    color: $dark-text;
-    z-index: 10;
-    
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.4);
-    }
-  }
-  
-  .theme-switch-slider {
-    background-color: rgba(255, 68, 68, 0.3);
-    
-    &::before {
-      background-color: #ff4444;
-    }
-  }
-  
-  a {
-    color: $dark-link;
-    
-    &:hover {
-      color: $dark-link-hover;
-    }
-    
-    &:visited {
-      color: darken($dark-link, 10%);
-    }
-  }
-  
-  .post-card {
-    background-color: $dark-card;
-    border-color: $dark-margin-line;
-    
-    .post-link {
-      color: $dark-heading-color;
-    }
-    
-    .post-excerpt {
-      color: $dark-text;
-    }
-    
-    &:hover {
-      border-color: $dark-separator;
-      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
-    }
-  }
-  
-  .post-meta {
-    color: $dark-meta-color;
-  }
-  
-  .page-content::before,
-  .page-content::after {
-    background-color: $dark-margin-line;
-  }
-  
-  blockquote {
-    background-color: rgba(31, 10, 10, 0.5);
-    border-left-color: $dark-separator;
-    color: $dark-text;
-  }
-  
-  pre, code {
-    background-color: rgba(31, 10, 10, 0.6);
-    border-color: $dark-margin-line;
-    color: $dark-text;
-  }
-  
-  .site-footer {
-    background-color: rgba(45, 15, 15, 0.5);
-    border-top-color: #5d2222;  // Brighter red for visibility
-  }
-  
-  table {
-    th {
-      background-color: rgba(31, 10, 10, 0.5);
-      border-color: $dark-margin-line;
-    }
-    
-    td {
-      border-color: $dark-margin-line;
-    }
-  }
-  
-  h2 {
-    border-bottom-color: $dark-margin-line;
-  }
+}
+
+&:hover {
+  border-color: $dark-separator;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
+}
+```
+
+}
+
+.post-meta {
+color: $dark-meta-color;
+}
+
+.page-content::before,
+.page-content::after {
+background-color: $dark-margin-line;
+}
+
+blockquote {
+background-color: rgba(31, 10, 10, 0.5);
+border-left-color: $dark-separator;
+color: $dark-text;
+}
+
+pre, code {
+background-color: rgba(31, 10, 10, 0.6);
+border-color: $dark-margin-line;
+color: $dark-text;
+}
+
+.site-footer {
+background-color: rgba(45, 15, 15, 0.5);
+border-top-color: #5d2222;  // Brighter red for visibility
+}
+
+table {
+th {
+background-color: rgba(31, 10, 10, 0.5);
+border-color: $dark-margin-line;
+}
+
+```
+td {
+  border-color: $dark-margin-line;
+}
+```
+
+}
+
+h2 {
+border-bottom-color: $dark-margin-line;
+}
 }
 
 // Typography
 body {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 17px;
-  line-height: 1.7;
-  font-weight: 400;
-  color: $text-color;
-  background-color: $background-color;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 17px;
+line-height: 1.7;
+font-weight: 400;
+color: $text-color;
+background-color: $background-color;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 // Headers with Source Serif
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-weight: 600;
-  line-height: 1.25;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: $text-color;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-weight: 600;
+line-height: 1.25;
+margin-top: 2rem;
+margin-bottom: 1rem;
+color: $text-color;
 }
 
 // Site header with no gradient gap
 .site-header {
-  background-color: $header-background;
-  border-top: none;
-  border-bottom: 5px solid $separator-color;
-  min-height: 55px;
-  position: relative;
-  padding: 12px 0;
-  transition: all 0.3s ease;
-  
-  .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    max-width: 100%;
-    padding: 0 20px;
-  }
+background-color: $header-background;
+border-top: none;
+border-bottom: 5px solid $separator-color;
+min-height: 55px;
+position: relative;
+padding: 12px 0;
+transition: all 0.3s ease;
+
+.wrapper {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+max-width: 100%;
+padding: 0 20px;
+}
 }
 
 // Wrapper adjustment for header elements
 .wrapper {
-  position: relative;
+position: relative;
 }
 
 // Red pixelated title - responsive with proper breakpoints
 .site-title {
-  font-family: 'Pixelify Sans', monospace;
-  font-size: 44px;
-  font-weight: 700;
-  text-align: center;
-  display: inline-block;
-  line-height: 1.2;
-  letter-spacing: 1px;
-  margin: 0 130px; // More space for buttons
-  text-transform: uppercase;
-  color: $title-color;
-  transition: color 0.3s ease;
-  position: relative;
-  z-index: 1;
-  white-space: nowrap;
-  
-  &, &:visited {
-    color: $title-color;
-    text-decoration: none;
-  }
-  
-  &:hover {
-    text-decoration: none;
-    color: lighten($title-color, 15%);
-  }
-  
-  .site-title-mobile {
-    display: none;
-  }
-  
-  // Large tablets
-  @media screen and (max-width: 900px) {
-    font-size: 38px;
-    margin: 0 110px;
-  }
-  
-  // Tablets
-  @media screen and (max-width: 768px) {
-    font-size: 32px;
-    margin: 0 100px;
-  }
-  
-  // Small tablets
-  @media screen and (max-width: 640px) {
-    font-size: 28px;
-    margin: 0 90px;
-  }
-  
-  // Large phones
-  @media screen and (max-width: 540px) {
-    font-size: 26px;
-    margin: 0 85px;
-  }
-  
-  // Mobile - show two-line version
-  @media screen and (max-width: 480px) {
-    font-size: 24px;
-    margin: 0;
-    white-space: normal;
-    
-    .site-title-desktop {
-      display: none;
-    }
-    
-    .site-title-mobile {
-      display: block;
-      line-height: 1.1;
-    }
-  }
+font-family: ‘Pixelify Sans’, monospace;
+font-size: 44px;
+font-weight: 700;
+text-align: center;
+display: inline-block;
+line-height: 1.2;
+letter-spacing: 1px;
+margin: 0 130px; // More space for buttons
+text-transform: uppercase;
+color: $title-color;
+transition: color 0.3s ease;
+position: relative;
+z-index: 1;
+white-space: nowrap;
+
+&, &:visited {
+color: $title-color;
+text-decoration: none;
 }
 
-// Theme toggle segmented button (single hitbox) - FIXED VERSION
+&:hover {
+text-decoration: none;
+color: lighten($title-color, 15%);
+}
+
+.site-title-mobile {
+display: none;
+}
+
+// Large tablets
+@media screen and (max-width: 900px) {
+font-size: 38px;
+margin: 0 110px;
+}
+
+// Tablets
+@media screen and (max-width: 768px) {
+font-size: 32px;
+margin: 0 100px;
+}
+
+// Small tablets
+@media screen and (max-width: 640px) {
+font-size: 28px;
+margin: 0 90px;
+}
+
+// Large phones
+@media screen and (max-width: 540px) {
+font-size: 26px;
+margin: 0 85px;
+}
+
+// Mobile - show two-line version
+@media screen and (max-width: 480px) {
+font-size: 24px;
+margin: 0;
+white-space: normal;
+
+```
+.site-title-desktop {
+  display: none;
+}
+
+.site-title-mobile {
+  display: block;
+  line-height: 1.1;
+}
+```
+
+}
+}
+
+// Theme toggle - completely rewritten for reliability
 .theme-toggle {
-  position: absolute;
-  top: 50%;
-  left: $spacing-unit;
-  transform: translateY(-50%);
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 156, 86, 0.2);
-  border: none;
-  border-radius: 8px;
-  padding: 2px;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: rgba(255, 156, 86, 0.3);
-  }
-  
-  &:focus {
-    outline: none;
-  }
-  
-  span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 12px;
-    font-size: 16px;
-    color: $text-color;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    user-select: none;
-    min-width: 28px;
-    min-height: 28px;
-    box-sizing: border-box;
-  }
-  
-  .theme-toggle-light {
-    background-color: rgba(231, 76, 60, 0.4);
-    color: white;
-  }
-  
-  .theme-toggle-dark {
-    background-color: transparent;
-    color: rgba(45, 52, 54, 0.7);
-  }
-  
-  .theme-toggle-divider {
-    width: 1px;
-    height: 20px;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 0;
-    margin: 0 2px;
-    flex-shrink: 0;
-  }
-  
-  // Mobile adjustments
-  @media screen and (max-width: 600px) {
-    left: 10px;
-    padding: 1px;
-    
-    span {
-      padding: 4px 8px;
-      font-size: 14px;
-      min-width: 24px;
-      min-height: 24px;
-    }
-    
-    .theme-toggle-divider {
-      height: 16px;
-      margin: 0 1px;
-    }
-  }
+position: absolute;
+top: 50%;
+left: $spacing-unit;
+transform: translateY(-50%);
+display: flex;
+align-items: center;
+background-color: rgba(255, 156, 86, 0.15);
+border: 1px solid rgba(231, 76, 60, 0.2);
+border-radius: 6px;
+padding: 2px;
+cursor: pointer;
+z-index: 10;
+transition: all 0.3s ease;
+
+&:hover {
+background-color: rgba(255, 156, 86, 0.25);
+border-color: rgba(231, 76, 60, 0.4);
 }
 
+&:focus {
+outline: none;
+}
+}
+
+// Individual toggle sections
+.theme-toggle span {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 32px;
+height: 32px;
+font-size: 16px;
+border-radius: 4px;
+transition: all 0.3s ease;
+user-select: none;
+flex-shrink: 0;
+}
+
+// Light mode button (active by default)
+.theme-toggle-light {
+background-color: rgba(231, 76, 60, 0.6);
+color: white;
+font-weight: bold;
+}
+
+// Dark mode button (inactive by default)  
+.theme-toggle-dark {
+background-color: transparent;
+color: rgba(45, 52, 54, 0.6);
+}
+
+// Divider
+.theme-toggle-divider {
+width: 1px;
+height: 24px;
+background-color: rgba(0, 0, 0, 0.15);
+margin: 0 1px;
+flex-shrink: 0;
+}
+
+// Dark mode states
 body.dark-mode {
-  .theme-toggle {
-    background-color: rgba(255, 68, 68, 0.2);
-    
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.3);
-    }
-    
-    span {
-      color: $dark-text;
-    }
-    
-    .theme-toggle-light {
-      background-color: transparent;
-      color: rgba(255, 245, 245, 0.7);
-    }
-    
-    .theme-toggle-dark {
-      background-color: rgba(255, 68, 68, 0.5);
-      color: white;
-    }
-    
-    .theme-toggle-divider {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-  }
+.theme-toggle {
+background-color: rgba(255, 68, 68, 0.15);
+border-color: rgba(255, 68, 68, 0.3);
+
+```
+&:hover {
+  background-color: rgba(255, 68, 68, 0.25);
+  border-color: rgba(255, 68, 68, 0.5);
+}
+```
+
+}
+
+// In dark mode: light button becomes inactive
+.theme-toggle-light {
+background-color: transparent;
+color: rgba(255, 245, 245, 0.6);
+font-weight: normal;
+}
+
+// In dark mode: dark button becomes active
+.theme-toggle-dark {
+background-color: rgba(255, 68, 68, 0.6);
+color: white;
+font-weight: bold;
+}
+
+.theme-toggle-divider {
+background-color: rgba(255, 255, 255, 0.2);
+}
+}
+
+// Mobile adjustments
+@media screen and (max-width: 600px) {
+.theme-toggle {
+left: 10px;
+
+```
+span {
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+}
+
+.theme-toggle-divider {
+  height: 20px;
+}
+```
+
+}
 }
 
 // Navigation styling with better contrast
 .site-nav {
-  position: absolute;
-  top: 50%;
-  right: $spacing-unit;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  z-index: 10;
-  
-  .page-link {
-    font-family: 'Source Serif 4', Georgia, serif;
-    color: $text-color;
-    background-color: rgba(231, 76, 60, 0.25);  // Deeper red background
-    padding: 8px 16px;
-    border-radius: 8px;
-    margin-left: 10px;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      background-color: rgba(231, 76, 60, 0.4);
-      text-decoration: none;
-    }
-  }
+position: absolute;
+top: 50%;
+right: $spacing-unit;
+transform: translateY(-50%);
+background-color: transparent;
+border: none;
+z-index: 10;
+
+.page-link {
+font-family: ‘Source Serif 4’, Georgia, serif;
+color: $text-color;
+background-color: rgba(231, 76, 60, 0.25);  // Deeper red background
+padding: 8px 16px;
+border-radius: 8px;
+margin-left: 10px;
+transition: all 0.3s ease;
+
+```
+&:hover {
+  background-color: rgba(231, 76, 60, 0.4);
+  text-decoration: none;
+}
+```
+
+}
 }
 
 // Content wrapper with margin lines
 .page-content {
-  padding: $spacing-unit 0;
-  position: relative;
-  
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background-color: $margin-line-color;
-    transition: background-color 0.3s ease;
-  }
-  
-  &::before {
-    left: calc(50% - #{$content-width / 2} - 20px);
-  }
-  
-  &::after {
-    right: calc(50% - #{$content-width / 2} - 20px);
-  }
+padding: $spacing-unit 0;
+position: relative;
+
+&::before,
+&::after {
+content: ‘’;
+position: absolute;
+top: 0;
+bottom: 0;
+width: 1px;
+background-color: $margin-line-color;
+transition: background-color 0.3s ease;
+}
+
+&::before {
+left: calc(50% - #{$content-width / 2} - 20px);
+}
+
+&::after {
+right: calc(50% - #{$content-width / 2} - 20px);
+}
 }
 
 // Homepage content
 .home {
-  .page-heading {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 20px;
-  }
-  
-  .welcome-text {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 40px;
-  }
-  
-  h2 {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $margin-line-color;
-  }
+.page-heading {
+font-size: 32px;
+font-weight: 600;
+margin-bottom: 20px;
+}
+
+.welcome-text {
+font-size: 18px;
+line-height: 1.6;
+margin-bottom: 40px;
+}
+
+h2 {
+font-size: 24px;
+font-weight: 600;
+margin-bottom: 20px;
+padding-bottom: 10px;
+border-bottom: 2px solid $margin-line-color;
+}
 }
 
 // Post cards - wide format with proper borders
 .post-list {
-  list-style: none;
-  margin-left: 0;
-  max-width: 100%;
-  
-  > li {
-    margin-bottom: 20px;
-    padding: 0;
-    border: none;
-  }
-}
+list-style: none;
+margin-left: 0;
+max-width: 100%;
+
+> li {
+> margin-bottom: 20px;
+> padding: 0;
+> border: none;
+> }
+> }
 
 .post-card {
-  display: block;
-  background-color: $card-background;
-  border: 2px solid $margin-line-color;
-  border-radius: 12px;
-  padding: 24px 28px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  
-  &:hover {
-    border-color: $brand-color;
-    box-shadow: 0 4px 12px rgba(255, 140, 66, 0.2);
-    transform: translateY(-2px);
-    
-    .post-link {
-      color: $link-hover;
-    }
-  }
-  
-  .post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 12px;
-  }
-  
-  .post-link {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: $text-color;
-    text-decoration: none;
-    margin: 0;
-    flex: 1;
-  }
-  
-  .post-meta {
-    font-family: 'Source Serif 4', Georgia, serif;
-    font-style: italic;
-    font-size: 14px;
-    color: $grey-color;
-    margin-left: 20px;
-    white-space: nowrap;
-  }
-  
-  .post-excerpt {
-    font-size: 16px;
-    line-height: 1.5;
-    color: $text-color;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: 4.5em;
-  }
+display: block;
+background-color: $card-background;
+border: 2px solid $margin-line-color;
+border-radius: 12px;
+padding: 24px 28px;
+transition: all 0.3s ease;
+cursor: pointer;
+text-decoration: none;
+color: inherit;
+
+&:hover {
+border-color: $brand-color;
+box-shadow: 0 4px 12px rgba(255, 140, 66, 0.2);
+transform: translateY(-2px);
+
+```
+.post-link {
+  color: $link-hover;
+}
+```
+
+}
+
+.post-header {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+margin-bottom: 12px;
+}
+
+.post-link {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 24px;
+font-weight: 700;
+color: $text-color;
+text-decoration: none;
+margin: 0;
+flex: 1;
+}
+
+.post-meta {
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-style: italic;
+font-size: 14px;
+color: $grey-color;
+margin-left: 20px;
+white-space: nowrap;
+}
+
+.post-excerpt {
+font-size: 16px;
+line-height: 1.5;
+color: $text-color;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+max-height: 4.5em;
+}
+}
+
+// Pinned posts styling - slightly different appearance
+.pinned-card {
+background-color: rgba(255, 237, 186, 0.4);  // Slightly warmer background
+border-color: rgba(231, 76, 60, 0.3);  // Red-tinted border
+
+&:hover {
+border-color: $title-color;
+box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.post-link {
+color: $title-color;  // Red color for pinned post titles
+}
+}
+
+body.dark-mode {
+.pinned-card {
+background-color: rgba(45, 15, 15, 0.6);
+border-color: rgba(255, 68, 68, 0.4);
+
+```
+&:hover {
+  border-color: $dark-title;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.post-link {
+  color: $dark-title;
+}
+```
+
+}
 }
 
 // Load more posts button
 .load-more-container {
-  text-align: center;
-  margin-top: 40px;
+text-align: center;
+margin-top: 40px;
 }
 
 .load-more-btn {
-  background-color: $brand-color;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: darken($brand-color, 10%);
-    transform: translateY(-2px);
-  }
+background-color: $brand-color;
+color: white;
+border: none;
+padding: 12px 24px;
+border-radius: 8px;
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+
+&:hover {
+background-color: darken($brand-color, 10%);
+transform: translateY(-2px);
+}
 }
 
 body.dark-mode .load-more-btn {
-  background-color: $dark-accent-line;
-  
-  &:hover {
-    background-color: lighten($dark-accent-line, 10%);
-  }
+background-color: $dark-accent-line;
+
+&:hover {
+background-color: lighten($dark-accent-line, 10%);
+}
 }
 
 // Link styling with warm colors
 a {
-  color: $link-color;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  
-  &:hover {
-    color: $link-hover;
-    text-decoration: underline;
-  }
-  
-  &:active {
-    color: $link-active;
-  }
-  
-  &:visited {
-    color: darken($link-color, 10%);
-  }
+color: $link-color;
+text-decoration: none;
+transition: color 0.2s ease;
+
+&:hover {
+color: $link-hover;
+text-decoration: underline;
+}
+
+&:active {
+color: $link-active;
+}
+
+&:visited {
+color: darken($link-color, 10%);
+}
 }
 
 // Post content
 .post-content {
-  margin-bottom: $spacing-unit * 2;
-  
-  h2 {
-    font-size: 28px;
-    font-weight: 600;
-  }
-  
-  h3 {
-    font-size: 22px;
-    font-weight: 600;
-  }
-  
-  h4 {
-    font-size: 18px;
-  }
+margin-bottom: $spacing-unit * 2;
+
+h2 {
+font-size: 28px;
+font-weight: 600;
+}
+
+h3 {
+font-size: 22px;
+font-weight: 600;
+}
+
+h4 {
+font-size: 18px;
+}
 }
 
 // Blockquotes with warm styling
 blockquote {
-  border-left: 4px solid $brand-color;
-  padding-left: $spacing-unit / 2;
-  color: $grey-color;
-  font-style: italic;
-  margin: $spacing-unit 0;
-  background-color: rgba(255, 237, 186, 0.3);
-  padding: 15px;
-  padding-left: 20px;
-  transition: all 0.3s ease;
-  
-  > :last-child {
-    margin-bottom: 0;
-  }
-}
+border-left: 4px solid $brand-color;
+padding-left: $spacing-unit / 2;
+color: $grey-color;
+font-style: italic;
+margin: $spacing-unit 0;
+background-color: rgba(255, 237, 186, 0.3);
+padding: 15px;
+padding-left: 20px;
+transition: all 0.3s ease;
+
+> :last-child {
+> margin-bottom: 0;
+> }
+> }
 
 // Code blocks with warm tones
 pre,
 code {
-  font-size: 15px;
-  border-radius: 4px;
-  background-color: rgba(255, 250, 232, 0.6);
-  border: 1px solid $margin-line-color;
-  transition: all 0.3s ease;
+font-size: 15px;
+border-radius: 4px;
+background-color: rgba(255, 250, 232, 0.6);
+border: 1px solid $margin-line-color;
+transition: all 0.3s ease;
 }
 
 code {
-  padding: 2px 4px;
-  font-family: 'Courier New', monospace;
+padding: 2px 4px;
+font-family: ‘Courier New’, monospace;
 }
 
 pre {
-  padding: 12px;
-  overflow-x: auto;
-  
-  > code {
-    border: 0;
-    padding-right: 0;
-    padding-left: 0;
-    background-color: transparent;
-  }
-}
+padding: 12px;
+overflow-x: auto;
+
+> code {
+> border: 0;
+> padding-right: 0;
+> padding-left: 0;
+> background-color: transparent;
+> }
+> }
 
 // Footer with warm background - more compact
 .site-footer {
-  border-top: 2px solid #e19b85;  // More visible red-tinted line
-  padding: 20px 0;
-  background-color: rgba(255, 212, 196, 0.5); // Shifted to match coral-peach header
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  
-  .footer-col {
-    margin-bottom: 10px;
-  }
-  
-  .footer-heading {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
+border-top: 2px solid #e19b85;  // More visible red-tinted line
+padding: 20px 0;
+background-color: rgba(255, 212, 196, 0.5); // Shifted to match coral-peach header
+font-family: ‘Source Serif 4’, Georgia, serif;
+font-size: 14px;
+transition: all 0.3s ease;
+
+.footer-col {
+margin-bottom: 10px;
+}
+
+.footer-heading {
+font-size: 16px;
+margin-bottom: 10px;
+}
 }
 
 // Tables
 table {
-  margin-bottom: $spacing-unit;
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-  font-family: 'Source Serif 4', Georgia, serif;
-  
-  th, td {
-    padding: 8px 12px;
-  }
-  
-  th {
-    background-color: rgba(255, 237, 186, 0.5);
-    border: 1px solid $margin-line-color;
-    font-weight: 600;
-  }
-  
-  td {
-    border: 1px solid $margin-line-color;
-  }
+margin-bottom: $spacing-unit;
+width: 100%;
+text-align: left;
+border-collapse: collapse;
+font-family: ‘Source Serif 4’, Georgia, serif;
+
+th, td {
+padding: 8px 12px;
+}
+
+th {
+background-color: rgba(255, 237, 186, 0.5);
+border: 1px solid $margin-line-color;
+font-weight: 600;
+}
+
+td {
+border: 1px solid $margin-line-color;
+}
 }
 
 // Images
 img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(255, 140, 66, 0.1);
+max-width: 100%;
+height: auto;
+border-radius: 4px;
+box-shadow: 0 2px 8px rgba(255, 140, 66, 0.1);
 }
 
 // Mobile responsiveness
 @media screen and (max-width: 600px) {
-  .site-header {
-    min-height: 50px;
-    padding: 10px 0;
-  }
-  
-  .site-title {
-    font-size: 24px;
-  }
-  
-  .site-nav {
-    right: 10px;
-    
-    .page-link {
-      padding: 6px 12px;
-      font-size: 14px;
-    }
-  }
-  
-  .page-content::before,
-  .page-content::after {
-    display: none;
-  }
-  
-  .post-card {
-    padding: 20px;
-    
-    .post-link {
-      font-size: 20px;
-    }
-    
-    .post-excerpt {
-      -webkit-line-clamp: 2;
-      max-height: 3em;
-    }
-  }
+.site-header {
+min-height: 50px;
+padding: 10px 0;
+}
+
+.site-title {
+font-size: 24px;
+}
+
+.site-nav {
+right: 10px;
+
+```
+.page-link {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+```
+
+}
+
+.page-content::before,
+.page-content::after {
+display: none;
+}
+
+.post-card {
+padding: 20px;
+
+```
+.post-link {
+  font-size: 20px;
+}
+
+.post-excerpt {
+  -webkit-line-clamp: 2;
+  max-height: 3em;
+}
+```
+
+}
 }
