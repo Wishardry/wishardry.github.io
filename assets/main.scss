@@ -332,17 +332,17 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   // Mobile - show two-line version
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
     font-size: 24px;
-    margin: 0;
+    margin: 0 80px; // Adjust margin for mobile
     white-space: normal;
     
     .site-title-desktop {
-      display: none;
+      display: none !important;
     }
     
     .site-title-mobile {
-      display: block;
+      display: block !important;
       line-height: 1.1;
     }
   }
@@ -438,7 +438,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Hamburger menu - mobile only
 .hamburger-menu {
-  display: none; // Hidden by default
+  display: none !important; // Force hidden by default
   position: absolute;
   top: 50%;
   right: $spacing-unit;
@@ -488,7 +488,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Mobile navigation dropdown
 .mobile-nav-dropdown {
-  display: none; // Hidden by default
+  display: none !important; // Force hidden by default
   position: fixed;
   top: 70px; // Below header
   right: 10px;
@@ -507,8 +507,8 @@ h1, h2, h3, h4, h5, h6 {
 // Show mobile nav when open
 .mobile-nav-open {
   display: block !important;
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 // Mobile navigation links
@@ -834,11 +834,21 @@ img {
   
   .site-title {
     font-size: 24px;
+    margin: 0 80px; // Less margin on mobile
+  }
+  
+  // Mobile title switching
+  .site-title-desktop {
+    display: none !important;
+  }
+  
+  .site-title-mobile {
+    display: block !important;
   }
   
   // Hide regular navigation on mobile
   .site-nav {
-    display: none;
+    display: none !important;
   }
   
   // Show hamburger menu on mobile
@@ -847,10 +857,18 @@ img {
     right: 10px; // Adjust for mobile spacing
   }
   
-  // Adjust mobile nav position for smaller screens
+  // Hide mobile nav dropdown by default
   .mobile-nav-dropdown {
+    display: none !important;
     right: 5px;
     top: 60px; // Adjust for mobile header height
+    
+    // Only show when specifically opened
+    &.mobile-nav-open {
+      display: block !important;
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
   .page-content::before,
