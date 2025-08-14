@@ -40,36 +40,24 @@ layout: default
     <ul class="post-list" id="post-list">
       {%- assign displayed_count = 0 -%}
       {%- for post in site.posts -%}
-        {%- assign is_pinned = false -%}
-        {%- for pinned_url in site.pinned_posts -%}
-          {%- if post.url == pinned_url -%}
-            {%- assign is_pinned = true -%}
-            {%- break -%}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- unless is_pinned -%}
-          {%- if displayed_count < 8 -%}
-          <li>
-            <a href="{{ post.url | relative_url }}" class="post-card">
-              <div class="post-header">
-                <h3 class="post-link">{{ post.title | escape }}</h3>
-                <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
-              </div>
-              <div class="post-excerpt">
-                {{ post.excerpt | strip_html | truncatewords: 50 }}
-              </div>
-            </a>
-          </li>
-          {%- assign displayed_count = displayed_count | plus: 1 -%}
-          {%- endif -%}
-        {%- endunless -%}
+        {%- if displayed_count < 8 -%}
+        <li>
+          <a href="{{ post.url | relative_url }}" class="post-card">
+            <div class="post-header">
+              <h3 class="post-link">{{ post.title | escape }}</h3>
+              <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+            </div>
+            <div class="post-excerpt">
+              {{ post.excerpt | strip_html | truncatewords: 50 }}
+            </div>
+          </a>
+        </li>
+        {%- assign displayed_count = displayed_count | plus: 1 -%}
+        {%- endif -%}
       {%- endfor -%}
     </ul>
     
     {%- assign remaining_posts = site.posts.size -%}
-    {%- if site.pinned_posts -%}
-      {%- assign remaining_posts = remaining_posts | minus: site.pinned_posts.size -%}
-    {%- endif -%}
     {%- if remaining_posts > 8 -%}
     <div class="load-more-container">
       <button class="load-more-btn" onclick="loadMorePosts()">Load More Posts</button>
@@ -90,24 +78,15 @@ layout: default
   const allPosts = [
     {%- assign skip_count = 0 -%}
     {%- for post in site.posts -%}
-      {%- assign is_pinned = false -%}
-      {%- for pinned_url in site.pinned_posts -%}
-        {%- if post.url == pinned_url -%}
-          {%- assign is_pinned = true -%}
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-      {%- unless is_pinned -%}
-        {%- if skip_count >= 8 -%}
-        {
-          title: {{ post.title | jsonify }},
-          url: {{ post.url | relative_url | jsonify }},
-          date: {{ post.date | date: "%B %-d, %Y" | jsonify }},
-          excerpt: {{ post.excerpt | strip_html | truncatewords: 50 | jsonify }}
-        }{%- unless forloop.last -%},{%- endunless -%}
-        {%- endif -%}
-        {%- assign skip_count = skip_count | plus: 1 -%}
-      {%- endunless -%}
+      {%- if skip_count >= 8 -%}
+      {
+        title: {{ post.title | jsonify }},
+        url: {{ post.url | relative_url | jsonify }},
+        date: {{ post.date | date: "%B %-d, %Y" | jsonify }},
+        excerpt: {{ post.excerpt | strip_html | truncatewords: 50 | jsonify }}
+      }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endif -%}
+      {%- assign skip_count = skip_count | plus: 1 -%}
     {%- endfor -%}
   ];
   
