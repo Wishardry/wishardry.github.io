@@ -3,7 +3,7 @@ layout: page
 title: Resources
 permalink: /resources/
 ---
-# Resources
+
 Here’s a list of resources, curated by me. In no way is this complete. I’m probably forgetting something. lol. 
 
 
