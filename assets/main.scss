@@ -195,6 +195,35 @@ body.dark-mode {
     border-bottom-color: $dark-margin-line;
   }
   
+  // Dark mode theme toggle fixes
+  .theme-toggle {
+    background-color: rgba(255, 68, 68, 0.15);
+    border-color: rgba(255, 68, 68, 0.3);
+    
+    &:hover {
+      background-color: rgba(255, 68, 68, 0.25);
+      border-color: rgba(255, 68, 68, 0.5);
+    }
+  }
+  
+  // In dark mode: light button becomes inactive
+  .theme-toggle-light {
+    background-color: transparent;
+    color: rgba(255, 245, 245, 0.8);
+    font-weight: normal;
+  }
+  
+  // In dark mode: dark button becomes active
+  .theme-toggle-dark {
+    background-color: rgba(255, 68, 68, 0.8);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .theme-toggle-divider {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
   .hamburger-menu {
     background-color: rgba(255, 68, 68, 0.15);
     border-color: rgba(255, 68, 68, 0.4);
@@ -352,7 +381,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle - completely rewritten for reliability
+// Theme toggle - COMPLETELY FIXED VERSION
 .theme-toggle {
   position: absolute;
   top: 50%;
@@ -383,9 +412,9 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
   border-radius: 4px;
   transition: all 0.3s ease;
   user-select: none;
@@ -394,7 +423,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Light mode button (active by default)
 .theme-toggle-light {
-  background-color: rgba(231, 76, 60, 0.6);
+  background-color: rgba(231, 76, 60, 0.8);
   color: white;
   font-weight: bold;
 }
@@ -402,16 +431,33 @@ h1, h2, h3, h4, h5, h6 {
 // Dark mode button (inactive by default)  
 .theme-toggle-dark {
   background-color: transparent;
-  color: rgba(45, 52, 54, 0.6);
+  color: rgba(45, 52, 54, 0.8);
 }
 
 // Divider
 .theme-toggle-divider {
   width: 1px;
-  height: 24px;
+  height: 16px;
   background-color: rgba(0, 0, 0, 0.15);
   margin: 0 1px;
   flex-shrink: 0;
+}
+
+// Mobile adjustments for theme toggle
+@media screen and (max-width: 600px) {
+  .theme-toggle {
+    left: 10px;
+    
+    span {
+      width: 20px;
+      height: 20px;
+      font-size: 12px;
+    }
+    
+    .theme-toggle-divider {
+      height: 14px;
+    }
+  }
 }
 
 // Navigation styling with better contrast
