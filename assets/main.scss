@@ -518,9 +518,6 @@ h1, h2, h3, h4, h5, h6 {
 
 // Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
-  padding-left: 13px; // Shift entire X element right
-  padding-right: 7px; // Balance the padding
-  
   .hamburger-line:nth-child(1) {
     transform: rotate(45deg) translate(2px, 7px);
   }
