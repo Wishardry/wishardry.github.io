@@ -519,21 +519,18 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 3px; // Ensure minimum thickness
 }
 
-// Hamburger animation when active (X shape) - CLEAN RESET
+// Hamburger animation when active (X shape) - SIMPLE CENTER ROTATION
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    width: 45px; // Try longer lines
-    transform: translateX(0px) rotate(45deg) translate(4px, 0px);
+    transform: translateY(7px) rotate(45deg);
   }
   
   .hamburger-line:nth-child(2) {
     opacity: 0;
-    transform: scaleX(0);
   }
   
   .hamburger-line:nth-child(3) {
-    width: 45px; // Try longer lines
-    transform: translateX(0px) rotate(-45deg) translate(4px, -0px);
+    transform: translateY(-7px) rotate(-45deg);
   }
 }
 
