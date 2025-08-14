@@ -339,7 +339,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   // Large tablets
-  @media screen and (max-width: 1130px) {
+  @media screen and (max-width: 900px) {
     font-size: 38px;
     margin: 0 110px;
   }
@@ -516,10 +516,10 @@ h1, h2, h3, h4, h5, h6 {
   transform-origin: center;
 }
 
-// Hamburger animation when active (X shape) - FIXED CENTERING
+// Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(0px, 7px);
+    transform: rotate(45deg) translate(3px, 5px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -528,7 +528,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(0px, -7px);
+    transform: rotate(-45deg) translate(3px, -5px);
   }
 }
 
@@ -872,15 +872,15 @@ img {
 }
 
 // Mobile responsiveness - EXTENDED to solve overlap
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1280px) {
   .site-header {
     min-height: 50px;
     padding: 10px 0;
   }
   
   .site-title {
-    font-size: 32px;
-    margin: 0 80px; // Less margin for larger screens
+    font-size: 38px;
+    margin: 0 100px; // Adjusted margin for larger breakpoint
   }
   
   // Hide regular navigation on tablets/mobile to prevent overlap
@@ -908,6 +908,14 @@ img {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+// Medium tablet screens
+@media screen and (max-width: 900px) {
+  .site-title {
+    font-size: 32px;
+    margin: 0 80px;
   }
 }
 
