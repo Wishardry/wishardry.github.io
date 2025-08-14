@@ -2,7 +2,6 @@
 layout: home
 ---
 
-
 This is home to Wishardry's wild thoughts, embodied in the form of writing. 
 
 The current blog state (since I'm rushing) is only Claude-assisted generated content. Yes, I'm sorry. I feel bad about it too - I'd love to write but putting these ideas out first is something that I really want to do. To all the writers out there: I'm sorry I betrayed y'all.
