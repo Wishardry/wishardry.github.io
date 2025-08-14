@@ -507,7 +507,7 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger lines
 .hamburger-line {
   display: block;
-  width: 20px;
+  width: 26px; // Increased from 20px to make X longer
   height: 3px;
   background-color: $text-color;
   margin: 2px 0;
@@ -519,7 +519,7 @@ h1, h2, h3, h4, h5, h6 {
 // Hamburger animation when active (X shape) - FIXED VALUES
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 8px);
+    transform: rotate(45deg) translate(0px, 6px);
   }
   
   .hamburger-line:nth-child(2) {
@@ -528,7 +528,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -8px);
+    transform: rotate(-45deg) translate(0px, -6px);
   }
 }
 
