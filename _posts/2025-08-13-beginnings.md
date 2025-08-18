@@ -2,7 +2,7 @@
 layout: post
 title: "Beginnings."
 date: 2025-08-13
-categories: starter tutorial blog yap beginner
+categories: starter tutorial blog yap beginner informative
 ---
 
 # A beginning. This is what this post is.
