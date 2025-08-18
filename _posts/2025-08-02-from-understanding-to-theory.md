@@ -2,7 +2,7 @@
 layout: post
 title: "From Understanding to Theory"
 date: 2025-08-02
-categories: conceptual-understandings yap framework theory
+categories: conceptual-understandings yap framework theory llm
 ---
 
 Note: This is the second of a series of three posts detailing my thought process. Made with the assistance of Claude - this was a speedrun. I promise a rewrite for the better (unless you think otherwise...).
