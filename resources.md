@@ -21,6 +21,8 @@ https://app.grayswan.ai/arena/blog/ai-red-teaming-prompt-engineering-resources-g
 
 [Google AI Studio](https://aistudio.google.com/) - single-handedly one of the best places you can use to craft jailbreaks, as long as you jailbreak Gemini first. (And let’s be honest, Gemini is the easiest model out there to jailbreak…)
 
+[chat.jojomaw.com](chat.jojomaw.com) - HackAPrompt dataset viewer. Especially useful for going through the HAP Pliny challenge dataset. GO READ THEM!!! They are singlehandedly one of the most concentrated sources of good goal-oriented jailbreaks ever. 
+
 
 
 ## Social Media:
