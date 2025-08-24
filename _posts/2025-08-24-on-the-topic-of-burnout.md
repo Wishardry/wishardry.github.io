@@ -43,4 +43,6 @@ So yeah. I’m taking some time off (slightly) to write this blog post and shitp
 
 I think the lesson that I learned is to not worry too much. And that pacing myself is very important. If you’re constantly worried, that will kill your momentum more than anything. 
 
-It seems like a lesson was learned, lol. (But was it really? Well uhhh…no comment…)
+It seems like a lesson was learned, lol. 
+
+(But was it really? Well uhhh…no comment…)
