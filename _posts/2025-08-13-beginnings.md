@@ -17,7 +17,7 @@ To be honest, it feels like it’s been a wild ride in these past 2 months. And 
 
 For me, this marks a new chapter in my life. Before, all I saw were the marked, reliable roads in front of me: career paths and university and the usual spiel of things. But now, I see new, other opportunities, brought to me by the tides and waves of summer days and nights. For example: a route in cybersecurity and AI/ML I never would have considered if that initial DougDoug post hadn’t triggered my little shiny object gremlin in my head. For that alone, I am grateful. (Did I also mention the heinous amounts of money you get for reporting jailbreaks? Absolutely bonkers, if you know where to look…)
 
-**Regardless, this journey hasn’t been without its ups and downs. **
+**Regardless, this journey hasn’t been without its ups and downs.**
 
 Without Rayeneth and Jojomaw’s endless, continual support (and enduring my rambling at random times into our shared chat lol), I would not have made it to where I am in less than two months. 
 
@@ -47,7 +47,7 @@ Sorry, got a bit carried away there delivering a litany. As I was saying, I want
 
 But it’s not only my own project. It’s also about the state of learning this skill of jailbreaking LLMs in general. There seems to be so much documentation for the “what” of jailbreaking, such as taxonomies like [Pangea](https://pangea.cloud/taxonomy/) and [0din] (https://0din.ai/research/taxonomy/), but never the “how”. While I was learning, I found that the philosophies and thought processes were locked behind closed doors, whispered about but never fully solidified, let alone the “why” behind the choice of techniques, an even more elusive thing found only within inner circles, explanations written up in GitHub links, and the like. 
 
-***I aim to change that. ***
+***I aim to change that.***
 
 I want to make jailbreaking not an art of intuition. I want to make the intuition that the experts have *explainable*. I want to use my ability to connect the dots to change the way we approach jailbreaking. I want to light a route for the beginners so that they understand what they are doing, so that they know what makes a jailbreak good, so that they know how a jailbreak works, so that they know why a jailbreak succeeds compared to others. 
 
@@ -57,9 +57,15 @@ I don’t think jailbreaking is very difficult, if you know how to learn. It too
 
 [I’ll be here.](https://discord.gg/u5gAD3HHtx) :)
 
+---
+
 P.S.: Expect more of this style of writing. Sometimes, I'll polish it. Sometimes, it will literally be my thought process. If you do enjoy this style though, let me know. 
+
+---
 
 Footnotes:
 [^1]: Hawaiian Havoc
+
 [^2]: check out the (to be done)[resources page](**Link Here, TBD**) if you need places to hone your skills with!
+
 [^3]: This is the name of the model for me, but it will be randomized for you. 
