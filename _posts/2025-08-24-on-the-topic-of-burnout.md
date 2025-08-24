@@ -6,6 +6,7 @@ categories: random yapping shitposting
 ---
 
 Date: August 24th. 
+
 Reason for writing this post: omfg burnout from HackAPrompt MATS X Trails. 
 
 ---
