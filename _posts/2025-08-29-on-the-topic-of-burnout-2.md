@@ -11,7 +11,7 @@ So now that it’s been a few days and I’ve went over a lot of things: I’ve 
 
 I’m basically fighting two other people over *numbers*, ahaha. 
 
-It does make me realize that all models can be beaten at some point with just “hey do this!” Aka <INTENT>. (I refuse to utter that word again in this blog post.)
+It does make me realize that all models can be beaten at some point with just “hey do this!” Aka \<INTENT>. (I refuse to utter that word again in this blog post.)
 
 Well, any model can currently be defeated with just a simple direct statement as an indirect prompt injection (unless the model is called GPT-5, which then…good luck. Good luck, indeed.) I have grievances about this because it means token golfing becomes “how short can you make this prompt while making it readable by the LLM”. Which ends up with 6 token prompts or something crazy and a whole lot of praying to RNGesus and shiny hunting. 
 
