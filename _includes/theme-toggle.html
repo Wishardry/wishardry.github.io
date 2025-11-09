@@ -4,23 +4,21 @@
 </button>
 
 <script>
-  // Check for saved theme preference or default to light mode
-  const currentTheme = localStorage.getItem('theme') || 'light';
-  
-  // Apply saved theme on load
-  if (currentTheme === 'dark') {
-    document.body.classList.add('dark-mode');
-  }
+  // Theme is already applied by blocking script in head.html
+  // This just handles the toggle functionality
   
   function toggleTheme() {
+    const html = document.documentElement;
     const body = document.body;
     
     if (body.classList.contains('dark-mode')) {
       // Switch to light mode
+      html.classList.remove('dark-mode');
       body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
     } else {
       // Switch to dark mode
+      html.classList.add('dark-mode');
       body.classList.add('dark-mode');
       localStorage.setItem('theme', 'dark');
     }

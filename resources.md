@@ -11,7 +11,7 @@ https://app.grayswan.ai/arena/blog/ai-red-teaming-prompt-engineering-resources-g
 
 [Pangea Taxonomy](https://pangea.cloud/taxonomy/) - extremely comprehensive. 
 
-[0din Taxonomy] (https://0din.ai/research/taxonomy/) - very good as well. 
+[0din Taxonomy](https://0din.ai/research/taxonomy/) - very good as well. 
 
 
 

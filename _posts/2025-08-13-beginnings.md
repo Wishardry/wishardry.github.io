@@ -2,7 +2,8 @@
 layout: post
 title: "Beginnings."
 date: 2025-08-13
-categories: starter tutorial blog yap beginner informative
+categories: [informative, random]
+tags: [starter, tutorial, blog, yap, beginner]
 ---
 
 # A beginning. This is what this post is.
@@ -45,7 +46,7 @@ What do I want to do? I want to do a couple of things. First, I want to finish a
 Sorry, got a bit carried away there delivering a litany. As I was saying, I want to finish at least a couple of projects, such as the writing for this blog, the things I have planned for the OSS-20B competition, and my ✨framework✨ that will be detailed in the **handwritten** blog posts (but obviously not in full - I still need to make the paper…)
 (Sorry I needed that sparkles, the framework is my brainchild :P)
 
-But it’s not only my own project. It’s also about the state of learning this skill of jailbreaking LLMs in general. There seems to be so much documentation for the “what” of jailbreaking, such as taxonomies like [Pangea](https://pangea.cloud/taxonomy/) and [0din] (https://0din.ai/research/taxonomy/), but never the “how”. While I was learning, I found that the philosophies and thought processes were locked behind closed doors, whispered about but never fully solidified, let alone the “why” behind the choice of techniques, an even more elusive thing found only within inner circles, explanations written up in GitHub links, and the like. 
+But it's not only my own project. It's also about the state of learning this skill of jailbreaking LLMs in general. There seems to be so much documentation for the "what" of jailbreaking, such as taxonomies like [Pangea](https://pangea.cloud/taxonomy/) and [0din](https://0din.ai/research/taxonomy/), but never the "how". While I was learning, I found that the philosophies and thought processes were locked behind closed doors, whispered about but never fully solidified, let alone the “why” behind the choice of techniques, an even more elusive thing found only within inner circles, explanations written up in GitHub links, and the like. 
 
 ***I aim to change that.***
 
@@ -66,6 +67,6 @@ P.S.: Expect more of this style of writing. Sometimes, I'll polish it. Sometimes
 Footnotes:
 [^1]: Hawaiian Havoc
 
-[^2]: check out the (to be done)[resources page](**Link Here, TBD**) if you need places to hone your skills with!
+[^2]: check out the [resources page](/resources/) if you need places to hone your skills with!
 
 [^3]: This is the name of the model for me, but it will be randomized for you. 
