@@ -12,3 +12,5 @@ For now, you can see the basis of what I call the "Cipher" framework - the name 
 Happy reading!
 
 Update - Aug 14th: Beginnings is up, the first handwritten post. The rewrites are underway, and watch out for website changes over the next few days. Exciting stuff!
+
+Update 2 - November 9th: I've been busy and haven't updated my blog in a while...my bad haha. I'll probably be tossing a few things here and there, but expect infrequent posts. Additionally - the Claude made posts have been moved offline, but if you want to still read them, check out [the repo](https://github.com/Wishardry/wishardry.github.io/tree/main/archived_posts) and you can find them there.

@@ -19,7 +19,6 @@ permalink: /:title/
 # Use the URL slug (the part after your domain, like /beginnings/ or /A-River-Not-A-Wall/)
 pinned_posts:
   - /beginnings/
-  - /A-River-Not-A-Wall/
   - /resources/
 
 # Minima theme settings

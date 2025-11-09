@@ -1,0 +1,14 @@
+# Archived Blog Posts
+
+This folder contains blog posts that have been removed from the main site but are preserved here for reference.
+
+## Claude-Generated Posts (The Cipher Framework Series)
+
+These three posts were written with Claude's assistance as a quick way to document initial ideas about LLM jailbreaking and the "Cipher" framework. They've been archived pending a handwritten rewrite.
+
+1. **A River, Not A Wall** - The foundational metaphor and philosophy
+2. **From Understanding to Theory** - The two-axis mathematical model
+3. **A Theoretical Application** - Adversarial topography concepts
+
+While AI-assisted, these posts contain valuable conceptual frameworks and insights that may still be useful for reference.
+
