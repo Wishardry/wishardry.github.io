@@ -4,8 +4,15 @@
 </button>
 
 <script>
-  // Theme is already applied by blocking script in head.html
-  // This just handles the toggle functionality
+  // Ensure body class is added on page load if dark mode is enabled
+  document.addEventListener('DOMContentLoaded', function() {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+      // Clean up inline style once CSS is loaded
+      document.documentElement.style.backgroundColor = '';
+    }
+  });
   
   function toggleTheme() {
     const html = document.documentElement;
@@ -15,6 +22,7 @@
       // Switch to light mode
       html.classList.remove('dark-mode');
       body.classList.remove('dark-mode');
+      html.style.backgroundColor = '';
       localStorage.setItem('theme', 'light');
     } else {
       // Switch to dark mode
