@@ -2,7 +2,8 @@
 layout: post
 title: "On The Topic Of Burnout"
 date: 2025-08-24
-categories: random yapping shitposting
+categories: [shitposting]
+tags: [yapping]
 ---
 
 Date: August 24th. 

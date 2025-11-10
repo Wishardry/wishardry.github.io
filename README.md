@@ -5,7 +5,7 @@ The entire site is made by Claude.
 ## Quick notes:
 informative → "Informative" tab 
 
-random → "Random" tab 
+updates → "Updates" tab 
 
 shitposting → "The Corner" tab 
 

@@ -40,7 +40,7 @@ layout: default
       <div class="tabs-wrapper">
         <div class="tab" data-tab="all" onclick="switchTab('all')">All posts</div>
         <div class="tab" data-tab="informative" onclick="switchTab('informative')">Informative</div>
-        <div class="tab" data-tab="random" onclick="switchTab('random')">Random</div>
+        <div class="tab" data-tab="updates" onclick="switchTab('updates')">Updates</div>
         <div class="tab" data-tab="shitposting" onclick="switchTab('shitposting')">The Corner</div>
         <div class="tab" data-tab="llm" onclick="switchTab('llm')">LLM stuff</div>
       </div>
@@ -65,15 +65,15 @@ layout: default
       </ul>
     </div>
 
-    <div class="tab-content" id="tab-random">
+    <div class="tab-content" id="tab-updates">
       <div class="tab-description">An assortment of things, here and there.</div>
-      <ul class="post-list" id="post-list-random">
-        <!-- Random posts will be populated by JavaScript -->
+      <ul class="post-list" id="post-list-updates">
+        <!-- Updates posts will be populated by JavaScript -->
       </ul>
     </div>
 
     <div class="tab-content" id="tab-shitposting">
-      <div class="tab-description">welcome to shitposting from Wishardry :)</div>
+      <div class="tab-description">welcome to an assortment of random posts from Wishardry, ranging from rants to somewhat serious topics, that aren't fully related to red teaming :)</div>
       <ul class="post-list" id="post-list-shitposting">
         <!-- Corner posts will be populated by JavaScript -->
       </ul>
@@ -112,7 +112,7 @@ layout: default
   const postsByCategory = {
     all: [...allPosts], // Oldest first for "All posts"
     informative: allPosts.filter(post => post.categories.includes('informative')).reverse(),
-    random: allPosts.filter(post => post.categories.includes('random')).reverse(),
+    updates: allPosts.filter(post => post.categories.includes('updates')).reverse(),
     shitposting: allPosts.filter(post => post.categories.includes('shitposting')).reverse(),
     llm: allPosts.filter(post => post.categories.includes('llm')).reverse()
   };

@@ -2,7 +2,7 @@
 layout: post
 title: "Beginnings."
 date: 2025-08-13
-categories: [informative, random]
+categories: [informative]
 tags: [starter, tutorial, blog, yap, beginner]
 ---
 
