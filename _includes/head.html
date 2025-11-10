@@ -3,24 +3,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <!-- Prevent dark mode flash - inject critical styles immediately -->
+  <!-- Critical dark mode styles - always present, activated by class -->
+  <style id="dark-mode-critical">
+    html.dark-mode, 
+    html.dark-mode body, 
+    body.dark-mode {
+      background-color: #0a0a0a !important;
+      color: #fff5f5 !important;
+    }
+  </style>
+  
+  <!-- Apply dark mode class immediately if needed -->
   <script>
     (function() {
       const theme = localStorage.getItem('theme');
       if (theme === 'dark') {
-        // Add class immediately
         document.documentElement.classList.add('dark-mode');
-        
-        // Inject critical dark mode styles as a style tag (not inline styles)
-        const style = document.createElement('style');
-        style.id = 'dark-mode-critical';
-        style.textContent = `
-          html.dark-mode, body.dark-mode {
-            background-color: #0a0a0a !important;
-            color: #fff5f5 !important;
-          }
-        `;
-        document.head.appendChild(style);
       }
     })();
   </script>

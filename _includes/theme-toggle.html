@@ -4,19 +4,11 @@
 </button>
 
 <script>
-  // Ensure body class is added on page load if dark mode is enabled
+  // Ensure body class is also added on DOM load
   document.addEventListener('DOMContentLoaded', function() {
     const theme = localStorage.getItem('theme');
     if (theme === 'dark') {
       document.body.classList.add('dark-mode');
-      
-      // Remove critical styles once main CSS is loaded
-      setTimeout(() => {
-        const criticalStyle = document.getElementById('dark-mode-critical');
-        if (criticalStyle) {
-          criticalStyle.remove();
-        }
-      }, 100);
     }
   });
   
@@ -29,12 +21,6 @@
       html.classList.remove('dark-mode');
       body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
-      
-      // Remove critical style if it exists
-      const criticalStyle = document.getElementById('dark-mode-critical');
-      if (criticalStyle) {
-        criticalStyle.remove();
-      }
     } else {
       // Switch to dark mode
       html.classList.add('dark-mode');
