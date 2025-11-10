@@ -308,7 +308,7 @@ body.dark-mode {
   }
   
   hr {
-    background-color: $dark-margin-line;
+    background-color: #8d6565; // Middle tone between side lines and text
   }
   
   pre, code {
@@ -942,7 +942,7 @@ blockquote {
 hr {
   border: none;
   height: 3px;
-  background-color: $margin-line-color;
+  background-color: #333; // Black-ish for light mode
   border-radius: 2px;
   margin: 2em 0;
 }
