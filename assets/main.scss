@@ -601,19 +601,16 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Hamburger menu - mobile only, also a flex item
+// Hamburger menu - mobile only, with proper container
 .hamburger-menu {
   display: none; // Hidden by default
   background-color: rgba(231, 76, 60, 0.1);
   border: 2px solid rgba(231, 76, 60, 0.3);
   border-radius: 6px;
   cursor: pointer;
-  padding: 10px;
   width: 44px;
   height: 44px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative; // For absolute positioning of lines
   transition: all 0.3s ease;
   flex-shrink: 0;
   
@@ -627,25 +624,36 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Hamburger lines
+// Hamburger lines - absolute positioning for perfect centering
 .hamburger-line {
-  display: block;
-  width: 26px;
-  height: 3px !important; // Force consistent thickness
+  position: absolute;
+  left: 50%;
+  width: 24px;
+  height: 3px;
   background-color: $text-color;
-  margin: 2px 0;
-  transition: all 0.3s ease;
   border-radius: 2px;
-  transform-origin: center;
-  flex-shrink: 0; // Prevent shrinking
-  min-height: 3px; // Ensure minimum thickness
+  transition: all 0.3s ease;
+  transform: translateX(-50%); // Center horizontally
+  
+  &:nth-child(1) {
+    top: 12px; // Top line
+  }
+  
+  &:nth-child(2) {
+    top: 50%;
+    transform: translate(-50%, -50%); // Center both axes
+  }
+  
+  &:nth-child(3) {
+    bottom: 12px; // Bottom line
+  }
 }
 
-// Hamburger animation when active (X shape) - SIMPLE CENTER ROTATION
+// Hamburger animation when active (X shape) - PERFECTLY CENTERED
 .hamburger-active {
   .hamburger-line:nth-child(1) {
-    width: 25px; // Reduced by 1px
-    transform: translateY(7px) rotate(45deg);
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
   }
   
   .hamburger-line:nth-child(2) {
@@ -653,8 +661,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .hamburger-line:nth-child(3) {
-    width: 25px; // Reduced by 1px
-    transform: translateY(-7px) rotate(-45deg);
+    top: 50%;
+    bottom: auto; // Remove bottom positioning
+    transform: translate(-50%, -50%) rotate(-45deg);
   }
 }
 
