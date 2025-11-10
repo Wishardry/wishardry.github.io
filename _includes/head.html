@@ -3,14 +3,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <!-- Prevent dark mode flash - MUST run FIRST before any styles -->
+  <!-- Prevent dark mode flash - inject critical styles immediately -->
   <script>
     (function() {
       const theme = localStorage.getItem('theme');
       if (theme === 'dark') {
+        // Add class immediately
         document.documentElement.classList.add('dark-mode');
-        // Add inline style to ensure immediate background color
-        document.documentElement.style.backgroundColor = '#0a0a0a';
+        
+        // Inject critical dark mode styles as a style tag (not inline styles)
+        const style = document.createElement('style');
+        style.id = 'dark-mode-critical';
+        style.textContent = `
+          html.dark-mode, body.dark-mode {
+            background-color: #0a0a0a !important;
+            color: #fff5f5 !important;
+          }
+        `;
+        document.head.appendChild(style);
       }
     })();
   </script>
