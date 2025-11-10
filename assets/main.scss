@@ -54,9 +54,8 @@ h1 {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 1px;
     background-color: $margin-line-color;
-    border-radius: 2px;
   }
 }
 
@@ -306,6 +305,10 @@ body.dark-mode {
     background-color: rgba(31, 10, 10, 0.5);
     border-left-color: $dark-separator;
     color: $dark-text;
+  }
+  
+  hr {
+    background-color: $dark-margin-line;
   }
   
   pre, code {
@@ -758,8 +761,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 3px solid $margin-line-color;
-    border-radius: 2px;
+    border-bottom: 2px solid $margin-line-color;
   }
 }
 
@@ -934,6 +936,15 @@ blockquote {
   > :last-child {
     margin-bottom: 0;
   }
+}
+
+// Horizontal rule styling (for --- in markdown)
+hr {
+  border: none;
+  height: 3px;
+  background-color: $margin-line-color;
+  border-radius: 2px;
+  margin: 2em 0;
 }
 
 // Code blocks with warm tones
