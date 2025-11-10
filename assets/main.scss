@@ -453,47 +453,39 @@ h1, h2, h3, h4, h5, h6 {
   color: $text-color;
 }
 
-// Site header with no gradient gap
+// Site header with proper flexbox layout
 .site-header {
   background-color: $header-background;
   border-top: none;
   border-bottom: 5px solid $separator-color;
   min-height: 55px;
-  position: relative;
   padding: 12px 0;
   transition: all 0.3s ease;
   
   .wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    justify-content: space-between;
+    gap: 15px;
     max-width: 100%;
     padding: 0 20px;
   }
 }
 
-// Wrapper adjustment for header elements
-.wrapper {
-  position: relative;
-}
-
-// Red pixelated title - responsive with proper breakpoints
+// Red pixelated title - truly responsive now
 .site-title {
   font-family: 'Pixelify Sans', monospace;
-  font-size: 44px;
+  font-size: clamp(24px, 5vw, 44px); // Fluid sizing
   font-weight: 700;
   text-align: center;
-  display: inline-block;
   line-height: 1.2;
   letter-spacing: 1px;
-  margin: 0 130px; // More space for buttons
   text-transform: uppercase;
   color: $title-color;
   transition: color 0.3s ease;
-  position: relative;
-  z-index: 1;
   white-space: nowrap;
+  flex: 1 1 auto; // Allow title to shrink if needed
+  min-width: 0; // Allow shrinking below content size
   
   &, &:visited {
     color: $title-color;
@@ -509,34 +501,8 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
   
-  // Large tablets
-  @media screen and (max-width: 900px) {
-    font-size: 38px;
-    margin: 0 110px;
-  }
-  
-  // Tablets
-  @media screen and (max-width: 768px) {
-    font-size: 32px;
-    margin: 0 100px;
-  }
-  
-  // Small tablets
-  @media screen and (max-width: 640px) {
-    font-size: 28px;
-    margin: 0 90px;
-  }
-  
-  // Large phones
-  @media screen and (max-width: 540px) {
-    font-size: 26px;
-    margin: 0 85px;
-  }
-  
   // Mobile - show two-line version
   @media screen and (max-width: 600px) {
-    font-size: 24px;
-    margin: 0 80px; // Adjust margin for mobile
     white-space: normal;
     
     .site-title-desktop {
@@ -550,12 +516,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle - FIXED VERSION (no gray divider)
+// Theme toggle - now a flex item
 .theme-toggle {
-  position: absolute;
-  top: 50%;
-  left: $spacing-unit;
-  transform: translateY(-50%);
   display: flex;
   align-items: center;
   background-color: rgba(255, 156, 86, 0.15);
@@ -563,8 +525,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px;
   padding: 2px;
   cursor: pointer;
-  z-index: 10;
   transition: all 0.3s ease;
+  flex-shrink: 0; // Never shrink
   
   &:hover {
     background-color: rgba(255, 156, 86, 0.25);
@@ -605,11 +567,9 @@ h1, h2, h3, h4, h5, h6 {
 
 // REMOVED DIVIDER COMPLETELY - no more gray chunk!
 
-// Mobile adjustments for theme toggle - back to original size
+// Mobile adjustments for theme toggle
 @media screen and (max-width: 900px) {
   .theme-toggle {
-    left: 10px;
-    
     span {
       width: 28px;
       height: 28px;
@@ -618,24 +578,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Navigation styling with better contrast
+// Navigation styling - now a flex item
 .site-nav {
-  position: absolute;
-  top: 50%;
-  right: $spacing-unit;
-  transform: translateY(-50%);
-  background-color: transparent;
-  border: none;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0; // Never shrink
   
   .page-link {
     font-family: 'Source Serif 4', Georgia, serif;
     color: $text-color;
-    background-color: rgba(231, 76, 60, 0.25);  // Deeper red background
+    background-color: rgba(231, 76, 60, 0.25);
     padding: 8px 16px;
     border-radius: 8px;
-    margin-left: 10px;
     transition: all 0.3s ease;
+    white-space: nowrap;
     
     &:hover {
       background-color: rgba(231, 76, 60, 0.4);
@@ -644,26 +601,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Hamburger menu - mobile only
+// Hamburger menu - mobile only, also a flex item
 .hamburger-menu {
-  display: none !important; // Force hidden by default
-  position: absolute;
-  top: 50%;
-  right: $spacing-unit;
-  transform: translateY(-50%);
+  display: none; // Hidden by default
   background-color: rgba(231, 76, 60, 0.1);
   border: 2px solid rgba(231, 76, 60, 0.3);
   border-radius: 6px;
   cursor: pointer;
   padding: 10px;
-  z-index: 15;
   width: 44px;
   height: 44px;
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  flex-shrink: 0;
   
   &:hover {
     background-color: rgba(231, 76, 60, 0.2);
@@ -1078,28 +1030,21 @@ img {
 }
 
 // Mobile responsiveness - EXTENDED to solve overlap
+// Tablet/mobile breakpoint - switch to hamburger menu
 @media screen and (max-width: 1280px) {
   .site-header {
     min-height: 50px;
     padding: 10px 0;
   }
   
-  .site-title {
-    font-size: 38px;
-    margin: 0 100px; // Adjusted margin for larger breakpoint
-  }
-  
-  // Hide regular navigation on tablets/mobile to prevent overlap
+  // Hide regular navigation on tablets/mobile
   .site-nav {
     display: none !important;
   }
   
   // Show hamburger menu on tablets/mobile
   .hamburger-menu {
-    display: flex !important; // Force show and use flex for centering
-    right: 10px; // Adjust spacing
-    width: 44px;
-    height: 44px;
+    display: flex !important;
   }
   
   // Hide mobile nav dropdown by default
@@ -1117,30 +1062,8 @@ img {
   }
 }
 
-// Medium tablet screens
-@media screen and (max-width: 900px) {
-  .site-title {
-    font-size: 32px;
-    margin: 0 80px;
-  }
-}
-
 // Smaller mobile screens
 @media screen and (max-width: 600px) {
-  .site-title {
-    font-size: 24px;
-    margin: 0 60px; // Even less margin on small screens
-  }
-  
-  // Mobile title switching
-  .site-title-desktop {
-    display: none !important;
-  }
-  
-  .site-title-mobile {
-    display: block !important;
-  }
-  
   .hamburger-menu {
     width: 40px;
     height: 40px;
