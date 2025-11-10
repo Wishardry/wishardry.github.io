@@ -897,6 +897,11 @@ a {
 .post-content {
   margin-bottom: $spacing-unit * 2;
   
+  p {
+    margin-bottom: 1.5em;
+    line-height: 1.8;
+  }
+  
   h2 {
     font-size: 28px;
     font-weight: 600;
