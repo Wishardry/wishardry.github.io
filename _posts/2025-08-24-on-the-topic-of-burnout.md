@@ -46,3 +46,7 @@ I think the lesson that I learned is to not worry too much. And that pacing myse
 It seems like a lesson was learned, lol. 
 
 (But was it really? Well uhhh…no comment…)
+
+---
+
+Update (Nov. 9th): Links have retired. You can find the respective blog posts on my Github repo, as archived.

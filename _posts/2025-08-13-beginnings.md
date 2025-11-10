@@ -56,7 +56,7 @@ I want to remove the starting block. No, I cannot promise to reveal all the secr
 
 I don’t think jailbreaking is very difficult, if you know how to learn. It took me less than two months to start my grind to mastery. Two months to develop the skills needed for something like this (and I feel like I’m very underqualified, by the way, just by the way of age, not to mention the disbelief of proper skills in 2 months). All you need to do is put in the time to make this work. Reach out your hand, connect with those grounded in this field, who know more than you. Spend the time learning. Take these opportunities seriously. Take the leap of faith. 
 
-[I’ll be here.](https://discord.gg/u5gAD3HHtx) :)
+I'll be here :)
 
 ---
 
@@ -70,3 +70,7 @@ Footnotes:
 [^2]: check out the [resources page](/resources/) if you need places to hone your skills with!
 
 [^3]: This is the name of the model for me, but it will be randomized for you. 
+
+---
+
+Update (Nov 9th): Discord link to server removed...but you can always find me in the HackAPrompt discord server.
