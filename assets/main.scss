@@ -81,37 +81,36 @@ h1 {
   font-weight: 500;
   padding: 12px 20px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   user-select: none;
   position: relative;
+  border-radius: 8px;
   
-  // Inactive tab styling - floating above main line
-  background-color: rgba(231, 76, 60, 0.15);
-  border: 2px solid rgba(231, 76, 60, 0.2);
-  border-radius: 6px;
+  // Inactive tab styling - subtle and flat
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 2px solid rgba(231, 76, 60, 0.15);
   color: $text-color;
-  margin-bottom: 8px; // Gap above main line
+  box-shadow: none;
   
   &:hover {
-    background-color: rgba(231, 76, 60, 0.25);
-    border-color: rgba(231, 76, 60, 0.4);
+    background-color: rgba(231, 76, 60, 0.2);
+    border-color: rgba(231, 76, 60, 0.3);
+    transform: translateY(-1px);
   }
   
-  // Active tab styling - connected to main line
+  // Active tab styling - pops out prominently
   &.active {
     background-color: $header-background;
-    border-color: $header-background;
+    border: 3px solid $brand-color;
     color: $text-color;
-    font-weight: 600;
-    margin-bottom: 0; // No gap - connects to main line
-    border-bottom-left-radius: 12px;  // Rounded bottom corners
-    border-bottom-right-radius: 12px;
-    border-top-left-radius: 6px;     // Keep top corners less rounded
-    border-top-right-radius: 6px;
-    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.1);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3), 0 0 0 1px rgba(255, 156, 86, 0.2);
+    transform: translateY(-2px);
     
     &:hover {
-      background-color: lighten($header-background, 5%);
+      background-color: lighten($header-background, 3%);
+      box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4), 0 0 0 1px rgba(255, 156, 86, 0.3);
+      transform: translateY(-3px);
     }
   }
 }
@@ -172,23 +171,28 @@ body.dark-mode {
   }
   
   .tab {
-    background-color: rgba(255, 68, 68, 0.15);
-    border-color: rgba(255, 68, 68, 0.2);
+    background-color: rgba(255, 68, 68, 0.1);
+    border-color: rgba(255, 68, 68, 0.15);
     color: $dark-text;
     
     &:hover {
-      background-color: rgba(255, 68, 68, 0.25);
-      border-color: rgba(255, 68, 68, 0.4);
+      background-color: rgba(255, 68, 68, 0.2);
+      border-color: rgba(255, 68, 68, 0.3);
+      transform: translateY(-1px);
     }
     
     &.active {
       background-color: $dark-header;
-      border-color: $dark-header;
+      border: 3px solid $dark-title;
       color: $dark-text;
-      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4), 0 0 0 1px rgba(255, 68, 68, 0.2);
+      transform: translateY(-2px);
       
       &:hover {
         background-color: lighten($dark-header, 5%);
+        box-shadow: 0 6px 16px rgba(255, 68, 68, 0.5), 0 0 0 1px rgba(255, 68, 68, 0.3);
+        transform: translateY(-3px);
       }
     }
   }
@@ -392,41 +396,6 @@ body.dark-mode {
     }
   }
   
-  // Dark mode tab styling
-  .tab {
-    background-color: rgba(255, 68, 68, 0.15);
-    border-color: rgba(255, 68, 68, 0.2);
-    color: $dark-text;
-    
-    &:hover {
-      background-color: rgba(255, 68, 68, 0.25);
-      border-color: rgba(255, 68, 68, 0.4);
-    }
-    
-    &.active {
-      background-color: $dark-header;
-      border-color: $dark-header;
-      color: $dark-text;
-      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
-      
-      &:hover {
-        background-color: lighten($dark-header, 5%);
-      }
-    }
-  }
-  
-  .main-line {
-    background-color: $dark-margin-line;
-  }
-  
-  .tab-description {
-    color: $dark-meta-color;
-    border-bottom-color: $dark-margin-line;
-  }
-  
-  .empty-state {
-    color: $dark-meta-color;
-  }
 }
 
 // Mobile responsiveness for tabs
