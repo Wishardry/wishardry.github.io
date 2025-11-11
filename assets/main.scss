@@ -462,43 +462,52 @@ h1, h2, h3, h4, h5, h6 {
   background-color: $header-background;
   border-top: none;
   border-bottom: 5px solid $separator-color;
-  min-height: 55px;
-  padding: 12px 0;
+  min-height: auto;
+  padding: 12px 0 4px 0;
+  margin-top: 8px;
   transition: all 0.3s ease;
-  position: relative;
   
   .wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(auto, 1fr) auto minmax(auto, 1fr);
     align-items: center;
-    justify-content: space-between;
     gap: 15px;
     max-width: 100%;
     padding: 0 20px;
   }
 }
 
-// Red pixelated title - positioned absolutely, centered independently
+// Header left and right containers
+.header-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+// Red pixelated title - truly responsive now
 .site-title {
   font-family: 'Pixelify Sans', monospace;
   font-size: clamp(24px, 5vw, 44px); // Fluid sizing
   font-weight: 700;
   text-align: center;
-  line-height: 1.2;
+  line-height: 0.85;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: $title-color;
   transition: color 0.3s ease;
   white-space: nowrap;
-  
-  // Position absolutely to center independent of flex items
-  position: absolute;
-  left: 50%;
-  top: 12px; // Account for header padding
-  transform: translateX(-50%);
-  z-index: 0; // Behind the buttons if they overlap
-  display: flex;
+  justify-self: center; // Center in grid column
+  display: inline-flex; // Shrink to content width
   align-items: center;
-  min-height: 55px; // Match header min-height to ensure vertical centering
+  justify-content: center; // Center content horizontally within flex container
+  padding-top: 3px; // Compensate for Pixelify Sans baseline
   
   &, &:visited {
     color: $title-color;
@@ -529,19 +538,17 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle - flex item, stays on left
+// Theme toggle
 .theme-toggle {
   display: flex;
   align-items: center;
   background-color: rgba(255, 156, 86, 0.15);
   border: 1px solid rgba(231, 76, 60, 0.2);
   border-radius: 6px;
-  padding: 2px;
+  padding: 1px;
   cursor: pointer;
   transition: all 0.3s ease;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1; // Above title
+  height: 36px;
   
   &:hover {
     background-color: rgba(255, 156, 86, 0.25);
@@ -558,13 +565,12 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   font-size: 16px;
   border-radius: 4px;
   transition: all 0.3s ease;
   user-select: none;
-  flex-shrink: 0;
 }
 
 // Light mode button (active by default)
@@ -585,31 +591,35 @@ h1, h2, h3, h4, h5, h6 {
 // Mobile adjustments for theme toggle
 @media screen and (max-width: 900px) {
   .theme-toggle {
+    height: 36px;
+    
     span {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       font-size: 14px;
     }
   }
 }
 
-// Navigation styling - flex item, stays on right
+// Navigation styling
 .site-nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1; // Above title
   
   .page-link {
     font-family: 'Source Serif 4', Georgia, serif;
     color: $text-color;
     background-color: rgba(231, 76, 60, 0.25);
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: 8px;
     transition: all 0.3s ease;
     white-space: nowrap;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    font-size: 15px;
     
     &:hover {
       background-color: rgba(231, 76, 60, 0.4);
@@ -625,12 +635,10 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid rgba(231, 76, 60, 0.3);
   border-radius: 6px;
   cursor: pointer;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   position: relative; // For absolute positioning of lines
   transition: all 0.3s ease;
-  flex-shrink: 0;
-  z-index: 1; // Above title
   
   &:hover {
     background-color: rgba(231, 76, 60, 0.2);
@@ -646,15 +654,15 @@ h1, h2, h3, h4, h5, h6 {
 .hamburger-line {
   position: absolute;
   left: 50%;
-  width: 24px;
-  height: 3px;
+  width: 20px;
+  height: 2px;
   background-color: $text-color;
   border-radius: 2px;
   transition: all 0.3s ease;
   transform: translateX(-50%); // Center horizontally
   
   &:nth-child(1) {
-    top: 12px; // Top line
+    top: 10px; // Top line
   }
   
   &:nth-child(2) {
@@ -663,7 +671,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   &:nth-child(3) {
-    bottom: 12px; // Bottom line
+    bottom: 10px; // Bottom line
   }
 }
 
@@ -1074,8 +1082,8 @@ img {
 // Tablet/mobile breakpoint - switch to hamburger menu
 @media screen and (max-width: 1280px) {
   .site-header {
-    min-height: 50px;
-    padding: 10px 0;
+    min-height: auto;
+    padding: 12px 0 4px 0;
   }
   
   // Hide regular navigation on tablets/mobile
@@ -1105,11 +1113,6 @@ img {
 
 // Smaller mobile screens
 @media screen and (max-width: 600px) {
-  .hamburger-menu {
-    width: 40px;
-    height: 40px;
-  }
-  
   .page-content::before,
   .page-content::after {
     display: none;

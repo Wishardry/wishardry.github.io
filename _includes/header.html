@@ -1,28 +1,35 @@
 <header class="site-header" role="banner">
 
-  <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-    <span class="site-title-desktop">WISHARDRY'S RED ROOM</span>
-    <span class="site-title-mobile">WISHARDRY'S<br>RED ROOM</span>
-  </a>
-
   <div class="wrapper">
-    {%- include theme-toggle.html -%}
+    <!-- Left side: Theme toggle -->
+    <div class="header-left">
+      {%- include theme-toggle.html -%}
+    </div>
+    
+    <!-- Center: Site title -->
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+      <span class="site-title-desktop">WISHARDRY'S RED ROOM</span>
+      <span class="site-title-mobile">WISHARDRY'S<br>RED ROOM</span>
+    </a>
 
-    <!-- Regular Navigation (Desktop) -->
-    <nav class="site-nav">
-      {%- for path in site.pages -%}
-        {%- if path.title and path.permalink -%}
-          <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
-        {%- endif -%}
-      {%- endfor -%}
-    </nav>
+    <!-- Right side: Navigation or hamburger -->
+    <div class="header-right">
+      <!-- Regular Navigation (Desktop) -->
+      <nav class="site-nav">
+        {%- for path in site.pages -%}
+          {%- if path.title and path.permalink -%}
+            <a class="page-link" href="{{ path.url | relative_url }}">{{ path.title | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
 
-    <!-- Hamburger Menu Button (Tablet/Mobile) -->
-    <button class="hamburger-menu" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
+      <!-- Hamburger Menu Button (Tablet/Mobile) -->
+      <button class="hamburger-menu" id="hamburger-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
 
     <!-- Mobile Navigation Dropdown -->
     <div class="mobile-nav-dropdown" id="mobile-nav">
