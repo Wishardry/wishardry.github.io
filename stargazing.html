@@ -1,0 +1,1700 @@
+---
+layout: default
+permalink: /stargazing/editor
+---
+
+<style>
+/* Break out of Jekyll's wrapper - but only on this page */
+body:has(#openingScreen), body:has(#mainEditor) {
+  .page-content {
+    padding: 0 !important;
+  }
+  
+  /* Remove decorative side lines from main site */
+  .page-content::before,
+  .page-content::after {
+    display: none !important;
+  }
+  
+  .wrapper {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Editor-specific styles */
+:root {
+  --editor-bg-light: #fffae8;
+  --editor-bg-dark: #0a0a0a;
+  --editor-card-light: #fff5e1;
+  --editor-card-dark: #1f0a0a;
+  --editor-text-light: #2d3436;
+  --editor-text-dark: #fff5f5;
+  --editor-border-light: #ffe8cc;
+  --editor-border-dark: #3d1515;
+  --editor-accent-light: #e74c3c;
+  --editor-accent-dark: #ff4444;
+  --editor-code-bg-light: #f8f8f8;
+  --editor-code-bg-dark: #1a1a1a;
+}
+
+/* Prevent horizontal scroll only */
+body {
+  overflow-x: hidden;
+}
+
+/* Opening Screen Styles */
+.editor-opening-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.editor-title {
+  font-family: 'Pixelify Sans', cursive;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--editor-accent-light);
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.dark-mode .editor-title {
+  color: var(--editor-accent-dark);
+}
+
+/* Move theme toggle more toward center */
+.site-header .theme-toggle {
+  margin-left: 20px;
+}
+
+.editor-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.editor-button-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.editor-btn {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border: 2px solid var(--editor-accent-light);
+  background: var(--editor-card-light);
+  color: var(--editor-text-light);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dark-mode .editor-btn {
+  border-color: var(--editor-accent-dark);
+  background: var(--editor-card-dark);
+  color: var(--editor-text-dark);
+}
+
+.editor-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.dark-mode .editor-btn:hover {
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.editor-btn:active {
+  transform: translateY(0);
+}
+
+/* Main Editor Styles */
+.editor-main {
+  display: none;
+  flex-direction: column;
+  min-height: calc(100vh - 100px);
+  width: 100vw;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--editor-card-light);
+  border-bottom: 2px solid var(--editor-border-light);
+  flex-shrink: 0;
+}
+
+.dark-mode .editor-header {
+  background: var(--editor-card-dark);
+  border-color: var(--editor-border-dark);
+}
+
+.editor-back-btn {
+  font-family: 'Source Serif 4', Georgia, serif;
+  padding: 8px 16px;
+  border: 2px solid var(--editor-accent-light);
+  background: transparent;
+  color: var(--editor-text-light);
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .editor-back-btn {
+  border-color: var(--editor-accent-dark);
+  color: var(--editor-text-dark);
+}
+
+.editor-back-btn:hover {
+  background: var(--editor-accent-light);
+  color: white;
+}
+
+.dark-mode .editor-back-btn:hover {
+  background: var(--editor-accent-dark);
+}
+
+.editor-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.editor-action-btn {
+  font-family: 'Source Serif 4', Georgia, serif;
+  padding: 8px 16px;
+  border: 2px solid var(--editor-border-light);
+  background: var(--editor-card-light);
+  color: var(--editor-text-light);
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .editor-action-btn {
+  border-color: var(--editor-border-dark);
+  background: var(--editor-card-dark);
+  color: var(--editor-text-dark);
+}
+
+.editor-action-btn:hover {
+  border-color: var(--editor-accent-light);
+}
+
+.dark-mode .editor-action-btn:hover {
+  border-color: var(--editor-accent-dark);
+}
+
+.save-indicator {
+  font-size: 12px;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+}
+
+.dark-mode .save-indicator {
+  color: var(--editor-text-dark);
+}
+
+/* Main Content Wrapper */
+.editor-workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  height: calc(100vh - 180px); /* Account for site header and editor header */
+}
+
+.editor-left-column {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-right: 1px solid var(--editor-border-light);
+  background: var(--editor-bg-light);
+}
+
+.dark-mode .editor-left-column {
+  border-right-color: var(--editor-border-dark);
+  background: var(--editor-bg-dark);
+}
+
+.editor-right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* YAML Form */
+.yaml-form {
+  background: var(--editor-card-light);
+  border-bottom: 2px solid var(--editor-border-light);
+  padding: 20px;
+  flex-shrink: 0;
+}
+
+.dark-mode .yaml-form {
+  background: var(--editor-card-dark);
+  border-color: var(--editor-border-dark);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--editor-text-light);
+}
+
+.dark-mode .form-group label {
+  color: var(--editor-text-dark);
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 8px 12px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 14px;
+  border: 1px solid var(--editor-border-light);
+  border-radius: 4px;
+  background: var(--editor-bg-light);
+  color: var(--editor-text-light);
+}
+
+.dark-mode .form-group input[type="text"],
+.dark-mode .form-group input[type="date"] {
+  border-color: var(--editor-border-dark);
+  background: var(--editor-bg-dark);
+  color: var(--editor-text-dark);
+}
+
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: var(--editor-text-light);
+}
+
+.dark-mode .checkbox-label {
+  color: var(--editor-text-dark);
+}
+
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.filename-preview {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  padding: 8px 12px;
+  background: var(--editor-code-bg-light);
+  border: 1px solid var(--editor-border-light);
+  border-radius: 4px;
+  color: var(--editor-text-light);
+  margin-top: 5px;
+}
+
+.dark-mode .filename-preview {
+  background: var(--editor-code-bg-dark);
+  border-color: var(--editor-border-dark);
+  color: var(--editor-text-dark);
+}
+
+.copy-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.copy-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  border: 1px solid var(--editor-accent-light);
+  background: transparent;
+  color: var(--editor-accent-light);
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .copy-btn {
+  border-color: var(--editor-accent-dark);
+  color: var(--editor-accent-dark);
+}
+
+.copy-btn:hover {
+  background: var(--editor-accent-light);
+  color: white;
+}
+
+.dark-mode .copy-btn:hover {
+  background: var(--editor-accent-dark);
+}
+
+/* Split Pane Editor */
+.editor-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.pane-header {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  padding: 12px 20px;
+  background: var(--editor-card-light);
+  border-bottom: 2px solid var(--editor-border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--editor-text-light);
+  flex-shrink: 0;
+}
+
+.dark-mode .pane-header {
+  background: var(--editor-card-dark);
+  border-color: var(--editor-border-dark);
+  color: var(--editor-text-dark);
+}
+
+.editor-textarea {
+  flex: 1;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 20px;
+  border: none;
+  background: var(--editor-code-bg-light);
+  color: var(--editor-text-light);
+  resize: none;
+  overflow-y: auto;
+}
+
+.dark-mode .editor-textarea {
+  background: var(--editor-code-bg-dark);
+  color: var(--editor-text-dark);
+}
+
+.preview-pane {
+  flex: 1;
+  padding: 30px;
+  background: var(--editor-bg-light);
+  color: var(--editor-text-light);
+  overflow-y: auto;
+  font-family: 'Source Serif 4', Georgia, serif;
+  line-height: 1.8;
+}
+
+.dark-mode .preview-pane {
+  background: var(--editor-bg-dark);
+  color: var(--editor-text-dark);
+}
+
+/* Preview title and date styling */
+.preview-title {
+  font-family: 'Pixelify Sans', cursive;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--editor-accent-light);
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.dark-mode .preview-title {
+  color: var(--editor-accent-dark);
+}
+
+.preview-date {
+  font-size: 14px;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.dark-mode .preview-date {
+  color: var(--editor-text-dark);
+}
+
+.preview-divider {
+  border: none;
+  border-top: 1px solid var(--editor-border-light);
+  margin: 20px 0 30px 0;
+}
+
+.dark-mode .preview-divider {
+  border-top-color: var(--editor-border-dark);
+}
+
+.pane-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+  background: var(--editor-card-light);
+  border-top: 1px solid var(--editor-border-light);
+  flex-shrink: 0;
+}
+
+.dark-mode .pane-footer {
+  color: var(--editor-text-dark);
+  background: var(--editor-card-dark);
+  border-color: var(--editor-border-dark);
+}
+
+.help-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--editor-accent-light);
+  background: transparent;
+  color: var(--editor-accent-light);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .help-btn {
+  border-color: var(--editor-accent-dark);
+  color: var(--editor-accent-dark);
+}
+
+.help-btn:hover {
+  background: var(--editor-accent-light);
+  color: white;
+}
+
+.dark-mode .help-btn:hover {
+  background: var(--editor-accent-dark);
+}
+
+.popout-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  border: 1px solid var(--editor-border-light);
+  background: transparent;
+  color: var(--editor-text-light);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .popout-btn {
+  border-color: var(--editor-border-dark);
+  color: var(--editor-text-dark);
+}
+
+.popout-btn:hover {
+  border-color: var(--editor-accent-light);
+}
+
+.dark-mode .popout-btn:hover {
+  border-color: var(--editor-accent-dark);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--editor-bg-light);
+  border: 2px solid var(--editor-border-light);
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 800px;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 100%;
+  position: relative;
+}
+
+.dark-mode .modal-content {
+  background: var(--editor-bg-dark);
+  border-color: var(--editor-border-dark);
+}
+
+.modal-header {
+  font-family: 'Pixelify Sans', cursive;
+  font-size: 24px;
+  color: var(--editor-accent-light);
+  margin-bottom: 20px;
+}
+
+.dark-mode .modal-header {
+  color: var(--editor-accent-dark);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+}
+
+.dark-mode .modal-close {
+  color: var(--editor-text-dark);
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+.draft-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.draft-item {
+  background: var(--editor-card-light);
+  border: 1px solid var(--editor-border-light);
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .draft-item {
+  background: var(--editor-card-dark);
+  border-color: var(--editor-border-dark);
+}
+
+.draft-item:hover {
+  border-color: var(--editor-accent-light);
+  transform: translateX(5px);
+}
+
+.dark-mode .draft-item:hover {
+  border-color: var(--editor-accent-dark);
+}
+
+.draft-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--editor-text-light);
+  margin-bottom: 5px;
+}
+
+.dark-mode .draft-title {
+  color: var(--editor-text-dark);
+}
+
+.draft-meta {
+  font-size: 12px;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.dark-mode .draft-meta {
+  color: var(--editor-text-dark);
+}
+
+.draft-preview {
+  font-size: 13px;
+  color: var(--editor-text-light);
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.dark-mode .draft-preview {
+  color: var(--editor-text-dark);
+}
+
+.draft-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.draft-action-btn {
+  padding: 4px 12px;
+  font-size: 12px;
+  border: 1px solid var(--editor-border-light);
+  background: transparent;
+  color: var(--editor-text-light);
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .draft-action-btn {
+  border-color: var(--editor-border-dark);
+  color: var(--editor-text-dark);
+}
+
+.draft-action-btn:hover {
+  border-color: var(--editor-accent-light);
+}
+
+.dark-mode .draft-action-btn:hover {
+  border-color: var(--editor-accent-dark);
+}
+
+.draft-action-btn.delete:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+}
+
+.markdown-help {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--editor-text-light);
+}
+
+.dark-mode .markdown-help {
+  color: var(--editor-text-dark);
+}
+
+.markdown-help h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  color: var(--editor-accent-light);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.dark-mode .markdown-help h3 {
+  color: var(--editor-accent-dark);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .editor-title {
+    font-size: 32px;
+  }
+
+  .editor-btn {
+    min-width: 150px;
+    font-size: 16px;
+    padding: 12px 24px;
+  }
+
+  .editor-workspace {
+    flex-direction: column;
+  }
+
+  .editor-left-column {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 2px solid var(--editor-border-light);
+    max-height: 50vh;
+  }
+
+  .dark-mode .editor-left-column {
+    border-color: var(--editor-border-dark);
+  }
+
+  .editor-right-column {
+    flex: 1;
+  }
+
+  .editor-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .yaml-form {
+    padding: 15px;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--editor-text-light);
+  opacity: 0.7;
+  font-family: 'Source Serif 4', Georgia, serif;
+}
+
+.dark-mode .empty-state {
+  color: var(--editor-text-dark);
+}
+</style>
+
+<!-- Opening Screen -->
+<div id="openingScreen" class="editor-opening-screen">
+  <div class="editor-title">The Editor</div>
+  
+  <div class="editor-buttons-container">
+    <div class="editor-button-row">
+      <button class="editor-btn" onclick="showLoadDrafts()">
+        📁 Load Draft <span id="draftCount"></span>
+      </button>
+      <button class="editor-btn" onclick="createNewPost()">
+        ✨ New Post
+      </button>
+    </div>
+    
+    <div class="editor-button-row">
+      <button class="editor-btn" onclick="importFile()">
+        📄 Import File
+      </button>
+      <button class="editor-btn" onclick="exportAllDrafts()">
+        💾 Export All
+      </button>
+      <button class="editor-btn" onclick="importBackup()">
+        📦 Import Backup
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Editor -->
+<div id="mainEditor" class="editor-main">
+  <div class="editor-header">
+    <button class="editor-back-btn" onclick="backToHome()">← Back to Menu</button>
+    <div class="editor-actions">
+      <span class="save-indicator" id="saveIndicator">All changes saved</span>
+      <button class="editor-action-btn" onclick="clearAll()">Clear All</button>
+      <button class="editor-action-btn" onclick="exportMarkdown()">📥 Export .md</button>
+      <button class="editor-action-btn" onclick="showShortcuts()">⌨️ Shortcuts</button>
+    </div>
+  </div>
+
+  <!-- Main Workspace -->
+  <div class="editor-workspace">
+    <!-- Left Column: YAML Form + Markdown Editor -->
+    <div class="editor-left-column">
+      <!-- YAML Form -->
+      <div class="yaml-form">
+    <div class="form-group">
+      <label for="postTitle">Post Title</label>
+      <input type="text" id="postTitle" placeholder="Enter your post title">
+      <div class="filename-preview" id="filenamePreview">Filename: 2025-11-10-untitled.md</div>
+    </div>
+
+    <div class="form-group">
+      <label for="postDate">Date</label>
+      <input type="date" id="postDate">
+    </div>
+
+    <div class="form-group">
+      <label>Categories</label>
+      <div class="checkbox-group">
+        <label class="checkbox-label">
+          <input type="checkbox" value="informative" class="category-checkbox"> Informative
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="updates" class="category-checkbox"> Updates
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="shitposting" class="category-checkbox"> Shitposting
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" value="llm" class="category-checkbox"> LLM
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="postTags">Tags (comma-separated)</label>
+      <input type="text" id="postTags" placeholder="tutorial, beginner, jailbreak">
+    </div>
+
+    <div class="form-group">
+      <label>Copy Options</label>
+      <div class="copy-buttons">
+        <button class="copy-btn" onclick="copyYAML()">Copy YAML</button>
+        <button class="copy-btn" onclick="copyFullPost()">Copy Full Post</button>
+        <button class="copy-btn" onclick="copyFilename()">Copy Filename</button>
+      </div>
+    </div>
+  </div>
+
+      <!-- Markdown Editor -->
+      <div class="editor-content">
+        <div class="pane-header">
+          <span>Markdown Editor</span>
+          <button class="help-btn" onclick="showMarkdownHelp()" title="Markdown Help">?</button>
+        </div>
+        <textarea id="markdownEditor" class="editor-textarea" placeholder="Start writing your blog post here..."></textarea>
+        <div class="pane-footer">
+          <span id="wordCount">0 words · 0 characters</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Live Preview -->
+    <div class="editor-right-column">
+      <div class="pane-header">
+        <span>Live Preview</span>
+        <button class="popout-btn" onclick="popoutPreview()">↗ Popout</button>
+      </div>
+      <div id="preview" class="preview-pane"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Load Drafts Modal -->
+<div id="loadDraftsModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('loadDraftsModal')">&times;</button>
+    <div class="modal-header">Your Drafts</div>
+    <div id="draftsList" class="draft-list"></div>
+  </div>
+</div>
+
+<!-- Markdown Help Modal -->
+<div id="markdownHelpModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('markdownHelpModal')">&times;</button>
+    <div class="modal-header">Markdown Reference</div>
+    <div class="markdown-help">
+      <h3>Basic Syntax</h3>
+      <pre>
+# Heading 1
+## Heading 2
+### Heading 3
+
+**bold text**
+*italic text*
+***bold and italic***
+
+[link text](https://example.com)
+![image alt text](image-url.jpg)
+
+- Unordered list item
+- Another item
+  - Nested item
+
+1. Ordered list item
+2. Another item
+
+> Blockquote
+
+`inline code`
+
+```
+code block
+```
+      </pre>
+
+      <h3>Extended Markdown</h3>
+      <pre>
+~~strikethrough~~
+
+- [ ] Task list item
+- [x] Completed task
+
+| Table | Header |
+|-------|--------|
+| Cell  | Cell   |
+
+Footnote reference[^1]
+
+[^1]: Footnote text
+
+---
+Horizontal rule
+      </pre>
+
+      <h3>Keyboard Shortcuts</h3>
+      <pre>
+Ctrl+B - Bold
+Ctrl+I - Italic
+Ctrl+K - Insert link
+Ctrl+/ - Show this help
+Ctrl+S - Save (auto-saves already)
+      </pre>
+    </div>
+  </div>
+</div>
+
+<!-- Shortcuts Modal -->
+<div id="shortcutsModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal('shortcutsModal')">&times;</button>
+    <div class="modal-header">Keyboard Shortcuts</div>
+    <div class="markdown-help">
+      <pre>
+<strong>Editor Shortcuts:</strong>
+Ctrl+B        - Make text bold
+Ctrl+I        - Make text italic
+Ctrl+K        - Insert link template
+Ctrl+/        - Show markdown help
+Ctrl+S        - Manual save (auto-saves every 10s)
+
+<strong>Navigation:</strong>
+Escape        - Close modal/return to menu
+
+<strong>Copy Actions:</strong>
+Quickly copy YAML, full post, or filename using the buttons above the editor.
+      </pre>
+    </div>
+  </div>
+</div>
+
+<!-- Hidden file input for import -->
+<input type="file" id="fileInput" accept=".md,.json" style="display: none;">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+
+<script>
+// ===============================
+// State Management
+// ===============================
+let currentDraftId = null;
+let autoSaveTimer = null;
+
+// ===============================
+// Storage Functions
+// ===============================
+function getDrafts() {
+  const drafts = localStorage.getItem('blog_editor_drafts');
+  return drafts ? JSON.parse(drafts) : [];
+}
+
+function saveDrafts(drafts) {
+  localStorage.setItem('blog_editor_drafts', JSON.stringify(drafts));
+  updateDraftCount();
+}
+
+function getCurrentDraft() {
+  if (!currentDraftId) return null;
+  const drafts = getDrafts();
+  return drafts.find(d => d.id === currentDraftId);
+}
+
+function saveCurrentDraft() {
+  if (!currentDraftId) {
+    currentDraftId = Date.now().toString();
+  }
+
+  const draft = {
+    id: currentDraftId,
+    title: document.getElementById('postTitle').value || 'Untitled',
+    content: document.getElementById('markdownEditor').value,
+    date: document.getElementById('postDate').value,
+    categories: Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value),
+    tags: document.getElementById('postTags').value,
+    lastModified: new Date().toISOString(),
+    wordCount: countWords(document.getElementById('markdownEditor').value)
+  };
+
+  const drafts = getDrafts();
+  const existingIndex = drafts.findIndex(d => d.id === currentDraftId);
+  
+  if (existingIndex >= 0) {
+    drafts[existingIndex] = draft;
+  } else {
+    drafts.push(draft);
+  }
+
+  saveDrafts(drafts);
+  showSaveIndicator('Saved ✓');
+}
+
+function loadDraft(draftId) {
+  const drafts = getDrafts();
+  const draft = drafts.find(d => d.id === draftId);
+  
+  if (!draft) return;
+
+  currentDraftId = draftId;
+  document.getElementById('postTitle').value = draft.title === 'Untitled' ? '' : draft.title;
+  document.getElementById('markdownEditor').value = draft.content || '';
+  document.getElementById('postDate').value = draft.date || getTodayDate();
+  document.getElementById('postTags').value = draft.tags || '';
+
+  // Set checkboxes
+  document.querySelectorAll('.category-checkbox').forEach(cb => {
+    cb.checked = draft.categories && draft.categories.includes(cb.value);
+  });
+
+  updateFilenamePreview();
+  updatePreview();
+  updateWordCount();
+  closeModal('loadDraftsModal');
+  showEditor();
+}
+
+function deleteDraft(draftId, event) {
+  event.stopPropagation();
+  
+  if (!confirm('Delete this draft?')) return;
+
+  const drafts = getDrafts();
+  const filtered = drafts.filter(d => d.id !== draftId);
+  saveDrafts(filtered);
+  
+  if (currentDraftId === draftId) {
+    currentDraftId = null;
+  }
+  
+  renderDraftsList();
+}
+
+function duplicateDraft(draftId, event) {
+  event.stopPropagation();
+  
+  const drafts = getDrafts();
+  const draft = drafts.find(d => d.id === draftId);
+  
+  if (!draft) return;
+
+  const newDraft = {
+    ...draft,
+    id: Date.now().toString(),
+    title: draft.title + ' (Copy)',
+    lastModified: new Date().toISOString()
+  };
+
+  drafts.push(newDraft);
+  saveDrafts(drafts);
+  renderDraftsList();
+}
+
+// ===============================
+// UI Functions
+// ===============================
+function showEditor() {
+  document.getElementById('openingScreen').style.display = 'none';
+  document.getElementById('mainEditor').style.display = 'flex';
+  
+  // Hide footer
+  const siteFooter = document.querySelector('.site-footer');
+  if (siteFooter) siteFooter.style.display = 'none';
+  
+  // Update preview with initial title/date
+  updatePreview();
+  
+  startAutoSave();
+}
+
+// Hide footer on opening screen too
+document.addEventListener('DOMContentLoaded', () => {
+  const siteFooter = document.querySelector('.site-footer');
+  if (siteFooter && document.getElementById('openingScreen')) {
+    siteFooter.style.display = 'none';
+  }
+});
+
+function backToHome() {
+  if (document.getElementById('markdownEditor').value.trim() !== '') {
+    saveCurrentDraft();
+  }
+  
+  document.getElementById('openingScreen').style.display = 'flex';
+  document.getElementById('mainEditor').style.display = 'none';
+  
+  // Restore footer
+  const siteFooter = document.querySelector('.site-footer');
+  if (siteFooter) siteFooter.style.display = '';
+  
+  stopAutoSave();
+}
+
+function createNewPost() {
+  currentDraftId = Date.now().toString();
+  document.getElementById('postTitle').value = '';
+  document.getElementById('markdownEditor').value = '';
+  document.getElementById('postDate').value = getTodayDate();
+  document.getElementById('postTags').value = '';
+  document.querySelectorAll('.category-checkbox').forEach(cb => cb.checked = false);
+  
+  updateFilenamePreview();
+  updatePreview();
+  updateWordCount();
+  showEditor();
+}
+
+function clearAll() {
+  if (!confirm('Clear all content? This will delete the current draft.')) return;
+
+  if (currentDraftId) {
+    const drafts = getDrafts();
+    const filtered = drafts.filter(d => d.id !== currentDraftId);
+    saveDrafts(filtered);
+  }
+
+  createNewPost();
+}
+
+function showLoadDrafts() {
+  renderDraftsList();
+  document.getElementById('loadDraftsModal').classList.add('active');
+}
+
+function renderDraftsList() {
+  const drafts = getDrafts();
+  const container = document.getElementById('draftsList');
+
+  if (drafts.length === 0) {
+    container.innerHTML = '<div class="empty-state">No drafts yet. Create your first post!</div>';
+    return;
+  }
+
+  // Sort by last modified, most recent first
+  drafts.sort((a, b) => new Date(b.lastModified) - new Date(a.lastModified));
+
+  container.innerHTML = drafts.map(draft => {
+    const preview = draft.content ? draft.content.substring(0, 100) + '...' : 'No content yet';
+    const modified = new Date(draft.lastModified).toLocaleString();
+    
+    return `
+      <div class="draft-item" onclick="loadDraft('${draft.id}')">
+        <div class="draft-title">${escapeHtml(draft.title)}</div>
+        <div class="draft-meta">
+          <span>Modified: ${modified}</span>
+          <span>${draft.wordCount || 0} words</span>
+        </div>
+        <div class="draft-preview">${escapeHtml(preview)}</div>
+        <div class="draft-actions">
+          <button class="draft-action-btn" onclick="loadDraft('${draft.id}')">Load</button>
+          <button class="draft-action-btn" onclick="duplicateDraft('${draft.id}', event)">Duplicate</button>
+          <button class="draft-action-btn delete" onclick="deleteDraft('${draft.id}', event)">Delete</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('active');
+}
+
+function updateDraftCount() {
+  const drafts = getDrafts();
+  const countEl = document.getElementById('draftCount');
+  if (drafts.length > 0) {
+    countEl.textContent = `(${drafts.length})`;
+  } else {
+    countEl.textContent = '';
+  }
+}
+
+// ===============================
+// Editor Functions
+// ===============================
+function updateFilenamePreview() {
+  const title = document.getElementById('postTitle').value;
+  const date = document.getElementById('postDate').value || getTodayDate();
+  const filename = generateFilename(title, date);
+  document.getElementById('filenamePreview').textContent = `Filename: ${filename}`;
+}
+
+function generateFilename(title, date) {
+  if (!title || title.trim() === '') {
+    return `${date}-untitled.md`;
+  }
+
+  // Sanitize title: lowercase, replace spaces with hyphens, remove special chars
+  const sanitized = title
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .trim();
+
+  return `${date}-${sanitized}.md`;
+}
+
+function getTodayDate() {
+  return new Date().toISOString().split('T')[0];
+}
+
+function updatePreview() {
+  const title = document.getElementById('postTitle').value || '*Title*';
+  const date = document.getElementById('postDate').value || getTodayDate();
+  const markdown = document.getElementById('markdownEditor').value;
+  
+  // Parse markdown
+  const html = marked.parse(markdown);
+  const clean = DOMPurify.sanitize(html);
+  
+  // Format date nicely (e.g., "August 13, 2025")
+  const dateObj = new Date(date + 'T00:00:00');
+  const formattedDate = dateObj.toLocaleDateString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+  });
+  
+  // Build preview with title and date
+  const preview = `
+    <h1 class="preview-title">${escapeHtml(title)}</h1>
+    <p class="preview-date">${formattedDate}</p>
+    <hr class="preview-divider">
+    ${clean}
+  `;
+  
+  document.getElementById('preview').innerHTML = preview;
+}
+
+function updateWordCount() {
+  const text = document.getElementById('markdownEditor').value;
+  const words = countWords(text);
+  const chars = text.length;
+  document.getElementById('wordCount').textContent = `${words} words · ${chars} characters`;
+}
+
+function countWords(text) {
+  return text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+}
+
+function showSaveIndicator(text) {
+  const indicator = document.getElementById('saveIndicator');
+  indicator.textContent = text;
+  setTimeout(() => {
+    indicator.textContent = 'All changes saved';
+  }, 2000);
+}
+
+function startAutoSave() {
+  stopAutoSave();
+  autoSaveTimer = setInterval(() => {
+    if (document.getElementById('markdownEditor').value.trim() !== '') {
+      saveCurrentDraft();
+    }
+  }, 10000); // Save every 10 seconds
+}
+
+function stopAutoSave() {
+  if (autoSaveTimer) {
+    clearInterval(autoSaveTimer);
+    autoSaveTimer = null;
+  }
+}
+
+// ===============================
+// Copy Functions
+// ===============================
+function generateYAML() {
+  const title = document.getElementById('postTitle').value || 'Untitled';
+  const date = document.getElementById('postDate').value || getTodayDate();
+  const categories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+  const tags = document.getElementById('postTags').value.split(',').map(t => t.trim()).filter(t => t);
+
+  let yaml = '---\n';
+  yaml += 'layout: post\n';
+  yaml += `title: "${title}"\n`;
+  yaml += `date: ${date}\n`;
+  
+  if (categories.length > 0) {
+    yaml += `categories: [${categories.join(', ')}]\n`;
+  }
+  
+  if (tags.length > 0) {
+    yaml += `tags: [${tags.join(', ')}]\n`;
+  }
+  
+  yaml += '---';
+  
+  return yaml;
+}
+
+function copyYAML() {
+  const yaml = generateYAML();
+  copyToClipboard(yaml, 'YAML copied!');
+}
+
+function copyFullPost() {
+  const yaml = generateYAML();
+  const content = document.getElementById('markdownEditor').value;
+  const full = `${yaml}\n\n${content}`;
+  copyToClipboard(full, 'Full post copied!');
+}
+
+function copyFilename() {
+  const title = document.getElementById('postTitle').value;
+  const date = document.getElementById('postDate').value || getTodayDate();
+  const filename = generateFilename(title, date);
+  copyToClipboard(filename, 'Filename copied!');
+}
+
+function copyToClipboard(text, successMessage) {
+  navigator.clipboard.writeText(text).then(() => {
+    showSaveIndicator(successMessage);
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    showSaveIndicator('Copy failed!');
+  });
+}
+
+// ===============================
+// Import/Export Functions
+// ===============================
+function exportMarkdown() {
+  const yaml = generateYAML();
+  const content = document.getElementById('markdownEditor').value;
+  const full = `${yaml}\n\n${content}`;
+  const title = document.getElementById('postTitle').value;
+  const date = document.getElementById('postDate').value || getTodayDate();
+  const filename = generateFilename(title, date);
+
+  downloadFile(full, filename, 'text/markdown');
+}
+
+function exportAllDrafts() {
+  const drafts = getDrafts();
+  
+  if (drafts.length === 0) {
+    alert('No drafts to export!');
+    return;
+  }
+
+  const data = JSON.stringify(drafts, null, 2);
+  const filename = `blog_drafts_backup_${getTodayDate()}.json`;
+  downloadFile(data, filename, 'application/json');
+  showSaveIndicator('All drafts exported!');
+}
+
+function importFile() {
+  const input = document.getElementById('fileInput');
+  input.accept = '.md';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target.result;
+      parseMarkdownFile(content);
+    };
+    reader.readAsText(file);
+    input.value = ''; // Reset input
+  };
+  input.click();
+}
+
+function importBackup() {
+  const input = document.getElementById('fileInput');
+  input.accept = '.json';
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const imported = JSON.parse(event.target.result);
+        
+        if (!Array.isArray(imported)) {
+          alert('Invalid backup file format!');
+          return;
+        }
+
+        const action = confirm(
+          `Found ${imported.length} draft(s).\n\n` +
+          `OK = Merge with existing drafts\n` +
+          `Cancel = Abort import`
+        );
+
+        if (action) {
+          const existing = getDrafts();
+          const merged = [...existing, ...imported];
+          saveDrafts(merged);
+          showSaveIndicator(`Imported ${imported.length} draft(s)!`);
+        }
+      } catch (err) {
+        alert('Failed to import backup: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+    input.value = ''; // Reset input
+  };
+  input.click();
+}
+
+function parseMarkdownFile(content) {
+  // Try to extract YAML front matter
+  const yamlRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const match = content.match(yamlRegex);
+
+  if (match) {
+    const yamlContent = match[1];
+    const markdownContent = match[2];
+
+    // Parse YAML (simple parsing)
+    const title = yamlContent.match(/title:\s*["']?(.*?)["']?\n/)?.[1] || 'Imported Post';
+    const date = yamlContent.match(/date:\s*(\d{4}-\d{2}-\d{2})/)?.[1] || getTodayDate();
+    const categoriesMatch = yamlContent.match(/categories:\s*\[(.*?)\]/)?.[1];
+    const tagsMatch = yamlContent.match(/tags:\s*\[(.*?)\]/)?.[1];
+
+    // Create new draft
+    currentDraftId = Date.now().toString();
+    document.getElementById('postTitle').value = title;
+    document.getElementById('markdownEditor').value = markdownContent.trim();
+    document.getElementById('postDate').value = date;
+    document.getElementById('postTags').value = tagsMatch ? tagsMatch.replace(/["']/g, '') : '';
+
+    // Set categories
+    const categories = categoriesMatch ? categoriesMatch.split(',').map(c => c.trim().replace(/["']/g, '')) : [];
+    document.querySelectorAll('.category-checkbox').forEach(cb => {
+      cb.checked = categories.includes(cb.value);
+    });
+
+    updateFilenamePreview();
+    updatePreview();
+    updateWordCount();
+    showEditor();
+    showSaveIndicator('File imported!');
+  } else {
+    // No YAML, just load as content
+    currentDraftId = Date.now().toString();
+    document.getElementById('markdownEditor').value = content;
+    document.getElementById('postDate').value = getTodayDate();
+    updatePreview();
+    updateWordCount();
+    showEditor();
+    showSaveIndicator('File imported!');
+  }
+}
+
+function downloadFile(content, filename, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ===============================
+// Modal Functions
+// ===============================
+function showMarkdownHelp() {
+  document.getElementById('markdownHelpModal').classList.add('active');
+}
+
+function showShortcuts() {
+  document.getElementById('shortcutsModal').classList.add('active');
+}
+
+function popoutPreview() {
+  const markdown = document.getElementById('markdownEditor').value;
+  const html = marked.parse(markdown);
+  const clean = DOMPurify.sanitize(html);
+  
+  const win = window.open('', '_blank', 'width=800,height=600');
+  win.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Preview</title>
+      <style>
+        body {
+          font-family: 'Source Serif 4', Georgia, serif;
+          line-height: 1.6;
+          max-width: 740px;
+          margin: 40px auto;
+          padding: 20px;
+          background: ${getComputedStyle(document.documentElement).getPropertyValue('--editor-bg-light')};
+          color: ${getComputedStyle(document.documentElement).getPropertyValue('--editor-text-light')};
+        }
+        .dark-mode body {
+          background: ${getComputedStyle(document.documentElement).getPropertyValue('--editor-bg-dark')};
+          color: ${getComputedStyle(document.documentElement).getPropertyValue('--editor-text-dark')};
+        }
+      </style>
+    </head>
+    <body>
+      ${clean}
+    </body>
+    </html>
+  `);
+  win.document.close();
+}
+
+// ===============================
+// Keyboard Shortcuts
+// ===============================
+document.addEventListener('keydown', (e) => {
+  // Ctrl+B - Bold
+  if (e.ctrlKey && e.key === 'b') {
+    e.preventDefault();
+    insertMarkdown('**', '**');
+  }
+  
+  // Ctrl+I - Italic
+  if (e.ctrlKey && e.key === 'i') {
+    e.preventDefault();
+    insertMarkdown('*', '*');
+  }
+  
+  // Ctrl+K - Link
+  if (e.ctrlKey && e.key === 'k') {
+    e.preventDefault();
+    insertMarkdown('[', '](url)');
+  }
+  
+  // Ctrl+/ - Help
+  if (e.ctrlKey && e.key === '/') {
+    e.preventDefault();
+    showMarkdownHelp();
+  }
+  
+  // Ctrl+S - Manual save
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault();
+    saveCurrentDraft();
+  }
+  
+  // Escape - Close modal
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal.active').forEach(modal => {
+      modal.classList.remove('active');
+    });
+  }
+});
+
+function insertMarkdown(before, after) {
+  const editor = document.getElementById('markdownEditor');
+  const start = editor.selectionStart;
+  const end = editor.selectionEnd;
+  const text = editor.value;
+  const selectedText = text.substring(start, end);
+  
+  const newText = text.substring(0, start) + before + selectedText + after + text.substring(end);
+  editor.value = newText;
+  
+  // Set cursor position
+  const newCursorPos = start + before.length + selectedText.length;
+  editor.setSelectionRange(newCursorPos, newCursorPos);
+  editor.focus();
+  
+  updatePreview();
+}
+
+// ===============================
+// Utility Functions
+// ===============================
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// ===============================
+// Event Listeners
+// ===============================
+document.getElementById('postTitle').addEventListener('input', () => {
+  updateFilenamePreview();
+  updatePreview(); // Update preview when title changes
+});
+document.getElementById('postDate').addEventListener('change', () => {
+  updateFilenamePreview();
+  updatePreview(); // Update preview when date changes
+});
+document.getElementById('markdownEditor').addEventListener('input', () => {
+  updatePreview();
+  updateWordCount();
+});
+
+// Close modals on outside click
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+});
+
+// ===============================
+// Initialization
+// ===============================
+document.addEventListener('DOMContentLoaded', () => {
+  updateDraftCount();
+  document.getElementById('postDate').value = getTodayDate();
+  updateFilenamePreview();
+});
+
+// Save before leaving
+window.addEventListener('beforeunload', (e) => {
+  if (document.getElementById('mainEditor').style.display === 'flex' &&
+      document.getElementById('markdownEditor').value.trim() !== '') {
+    saveCurrentDraft();
+  }
+});
+</script>
+
