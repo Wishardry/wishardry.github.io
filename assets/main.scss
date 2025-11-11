@@ -493,9 +493,12 @@ h1, h2, h3, h4, h5, h6 {
   // Position absolutely to center independent of flex items
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 12px; // Account for header padding
+  transform: translateX(-50%);
   z-index: 0; // Behind the buttons if they overlap
+  display: flex;
+  align-items: center;
+  min-height: 55px; // Match header min-height to ensure vertical centering
   
   &, &:visited {
     color: $title-color;
