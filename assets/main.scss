@@ -460,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
 // Site header with proper flexbox layout
 .site-header {
   background-color: $header-background;
-  border-top: 5px solid $separator-color;
+  border-top: none;
   border-bottom: 5px solid $separator-color;
   min-height: auto;
   padding: 10px 0 4px 0;
