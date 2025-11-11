@@ -1,3 +1,6 @@
+psst claude wrote this file while commiting...whatever I'm just going to leave this here lol.
+---
+
 # Archived Blog Posts
 
 This folder contains blog posts that have been removed from the main site but are preserved here for reference.
