@@ -465,19 +465,19 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 55px;
   padding: 12px 0;
   transition: all 0.3s ease;
+  position: relative;
   
   .wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 15px;
     max-width: 100%;
     padding: 0 20px;
-    position: relative;
   }
 }
 
-// Red pixelated title - truly responsive now
+// Red pixelated title - positioned absolutely, centered independently
 .site-title {
   font-family: 'Pixelify Sans', monospace;
   font-size: clamp(24px, 5vw, 44px); // Fluid sizing
@@ -489,6 +489,13 @@ h1, h2, h3, h4, h5, h6 {
   color: $title-color;
   transition: color 0.3s ease;
   white-space: nowrap;
+  
+  // Position absolutely to center independent of flex items
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0; // Behind the buttons if they overlap
   
   &, &:visited {
     color: $title-color;
@@ -519,7 +526,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Theme toggle - now a flex item
+// Theme toggle - flex item, stays on left
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -529,7 +536,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 2px;
   cursor: pointer;
   transition: all 0.3s ease;
-  flex-shrink: 0; // Never shrink
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1; // Above title
   
   &:hover {
     background-color: rgba(255, 156, 86, 0.25);
@@ -581,15 +590,14 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Navigation styling - positioned absolutely on the right
+// Navigation styling - flex item, stays on right
 .site-nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1; // Above title
   
   .page-link {
     font-family: 'Source Serif 4', Georgia, serif;
@@ -619,14 +627,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative; // For absolute positioning of lines
   transition: all 0.3s ease;
   flex-shrink: 0;
-  
-  // Position absolutely on mobile so it doesn't interfere with centering
-  @media screen and (max-width: 900px) {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  z-index: 1; // Above title
   
   &:hover {
     background-color: rgba(231, 76, 60, 0.2);
